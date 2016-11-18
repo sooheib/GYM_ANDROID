@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal"
+	>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/inbox_horizontal_margin"
+		android:layout_marginRight="@dimen/inbox_horizontal_margin"
+		android:layout_marginTop="@dimen/inbox_vertical_margin"
+		android:background="@color/colorAccent" >
+		<ImageView
+			android:id="@+id/messageIcon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:paddingLeft="@dimen/activity_horizontal_margin"
+			android:paddingRight="@dimen/activity_horizontal_margin"
+			android:src="@drawable/ic_send_black"
+			android:contentDescription="@string/content_desc_message_icon" />
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toLeftOf="@+id/messageIcon"
+		android:layout_alignParentLeft="true"
+		android:paddingTop="@dimen/message_vertical_padding"
+		android:paddingLeft="@dimen/activity_horizontal_margin"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		>
+	<TextView android:id="@+id/hourSchedule"
+		android:layout_width="80dip"
+		android:layout_height="70dip"
+		android:layout_gravity="center_vertical"
+		android:textColor="@color/white"
+		android:focusable="false"
+		android:clickable="false"
+		android:textSize="22sp"
+		android:textStyle="bold"
+		android:layout_marginTop="5dp"
+		/>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+
+
+		>
+
+		<TextView android:id="@+id/courseSchedule"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			android:textColor="@color/white"
+			/>
+
+		<TextView android:id="@+id/trainerSchedule"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="@color/white"
+			/>
+
+	</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>
+</LinearLayout>

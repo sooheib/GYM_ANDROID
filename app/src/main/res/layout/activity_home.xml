@@ -1,0 +1,39 @@
+<LinearLayout
+    android:id="@+id/main_layout"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HomeActivity">
+
+    <!-- our toolbar -->
+
+    <!-- our tablayout to display tabs  -->
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        >
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="396dp"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:background="@color/ToolbarColor"
+        android:tabStripEnabled="true"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabIndicatorHeight="3dp"/>
+
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.DetailScheduleActivity"
+    tools:showIn="@layout/activity_detail_schedule">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="18dp"
+        >
+        >
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="0dp"
+       android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/colorAccent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:duplicateParentState="true"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            >
+<ImageView
+    android:id="@+id/trainerphoto"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_marginLeft="8dp"
+    android:scaleType="fitXY"
+    />
+
+            <TextView
+                android:id="@+id/trainer"
+                android:textSize="15sp"
+            android:duplicateParentState="true"
+            android:layout_width="wrap_content"
+                android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Nicole M."
+                android:maxLines="2" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:duplicateParentState="true"
+            android:layout_width="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_height="140dp"
+            >
+
+            <TextView android:textSize="19sp"
+                android:textStyle="normal"
+                android:duplicateParentState="true"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cardio" />
+
+            <TextView android:textSize="16sp"
+                android:id="@+id/day"
+                android:textColor="@color/white"
+                android:duplicateParentState="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday / January 1"
+                android:includeFontPadding="false" />
+            <TextView
+                android:id="@+id/hour"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:duplicateParentState="true"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="10:00am" android:includeFontPadding="false" />
+            <TextView android:textSize="13sp"
+                android:textColor="@color/white"
+                android:duplicateParentState="true" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="60 min | 4 Spaces Available" />
+            <TextView android:textSize="13sp"
+                android:id="@+id/room"
+                android:textColor="@color/white"
+                android:duplicateParentState="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="room"
+                android:includeFontPadding="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLASS DETAIL"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            />
+    </ScrollView>
+
+</LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

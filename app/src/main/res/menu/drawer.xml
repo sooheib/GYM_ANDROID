@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu></menu>
+    <group
+        android:checkableBehavior="single" android:id="@+id/grp1"
+        >
+        <item
+            android:id="@+id/home"
+            android:checked="false"
+            android:icon="@drawable/home"
+            android:title="@string/navigation_item_1"
+
+            />
+
+        <item
+            android:id="@+id/classes"
+            android:checked="false"
+            android:icon="@drawable/sports"
+            android:title="@string/navigation_item_2" />
+
+        <item
+            android:id="@+id/trainers"
+            android:checked="false"
+            android:icon="@drawable/trainer"
+            android:title="@string/navigation_item_3" />
+
+        <item
+            android:id="@+id/events"
+            android:checked="false"
+            android:icon="@drawable/event"
+            android:title="@string/navigation_item_4" />
+
+        <item
+            android:id="@+id/exercise"
+            android:checked="false"
+            android:icon="@drawable/exercise"
+            android:title="@string/navigation_item_5" />
+
+
+    </group>
+    <group
+
+        android:checkableBehavior="single" android:id="@+id/grp2"
+        >
+
+        <item
+
+            android:checkableBehavior="single"
+            android:id="@+id/perso"
+            android:checked="false"
+            android:icon="@drawable/user"
+            android:title="@string/navigation_item_6" />
+        <item
+            android:id="@+id/setting"
+            android:checked="false"
+            android:icon="@drawable/settings"
+            android:title="@string/navigation_item_7" />
+    </group>
+
+    <group
+
+        >
+        <shape android:shape="rectangle" >
+            <solid android:color="#F4F4F4" />
+        </shape>
+        <item
+
+        android:checkableBehavior="single"
+        android:id="@+id/signout"
+        android:checked="false"
+        android:icon="@drawable/exit"
+        android:title="@string/navigation_item_8" />
+    </group>
+
+</menu>

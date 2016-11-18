@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="selmibenromdhane.sparta_v1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".app.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/spartalogo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ClassesActivity" />
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.TrainersActivity" />
+        <activity android:name=".activity.EventsActivity" />
+        <activity android:name=".activity.ExercisesActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.DetailScheduleActivity" />
+        <activity android:name=".activity.DetailsClassesActivity" />
+    </application>
+
+</manifest>
