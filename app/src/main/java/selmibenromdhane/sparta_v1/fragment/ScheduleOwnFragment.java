@@ -12,15 +12,15 @@ import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.ClassesCustomAdapter;
+import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.manager.Article;
+import selmibenromdhane.sparta_v1.parser.ScheduleDownloader;
+import selmibenromdhane.sparta_v1.parser.ScheduleOwnDownloader;
 
-/**
- * Created by Belal on 2/3/2016.
- */
 
 public class ScheduleOwnFragment extends Fragment {
 
-    final static String urlAddress="http://172.16.155.135/Upload-Insert-Update-Delete-Image-PHP-MySQL/getSchedule.php";
+    //final static String urlAddress="http://172.16.155.135/Upload-Insert-Update-Delete-Image-PHP-MySQL/getSchedule.php";
 
     List<Article> imgList = null;
     String img1 = "http://www.webdo.tn/wp-content/uploads/2013/03/Slim-Riahi1.jpg";
@@ -70,9 +70,12 @@ public class ScheduleOwnFragment extends Fragment {
         imgList.add(A11);
         imgList.add(A12);
 
-        classListView.setAdapter(new ClassesCustomAdapter(getContext(), R.layout.one_article, imgList));
+       // classListView.setAdapter(new ClassesCustomAdapter(getContext(), R.layout.one_article, imgList));
 
        // new ScheduleDownloader(getActivity(),urlAddress,classListView).execute();
+
+        new ScheduleOwnDownloader(getActivity(), AppConfig.URL_OWNSCHEDULE,classListView).execute();
+
 
         return rootView;
 

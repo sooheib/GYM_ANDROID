@@ -4,11 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,17 +21,15 @@ import selmibenromdhane.sparta_v1.adapter.SessionAdapter;
 import selmibenromdhane.sparta_v1.manager.Session;
 
 /**
- * Created by sooheib on 11/8/16.
+ * Created by sooheib on 11/21/16.
  */
 
-public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
+public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 
 
     Context c;
     String jsonData;
     ListView lv;
-    GridView lvv;
-
 
     public static String COURSE_EXTRA="course_code";
     public static String COURSE_COVER="course_cover";
@@ -50,28 +45,18 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
     public static  String ROOM_NUMBER="room_number";
 
-
-
-
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
-
-
     private ScheduleAdapter adapter;
-
 
     ProgressDialog pd;
     ArrayList<Session> schedules=new ArrayList<>();
 
-    public ScheduleParser(Context c, String jsonData, ListView lv) {
+
+
+    public ScheduleOwnParser(Context c, String jsonData, ListView lv) {
         this.c = c;
         this.jsonData = jsonData;
         this.lv = lv;
     }
-
-
-
 
     @Override
     protected void onPreExecute() {
@@ -89,6 +74,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
     @Override
     protected Integer doInBackground(Void... params) {
         return this.parseData();
+
     }
 
     @Override
@@ -103,9 +89,9 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
         }else {
             //BIND DATA TO LISTVIEW
             final SessionAdapter adapter=new SessionAdapter(c,schedules);
-              lv.setAdapter(adapter);
+            lv.setAdapter(adapter);
 
-         //   lvv.setAdapter(adapter);
+            //   lvv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -116,7 +102,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
 
                     Intent intent=new Intent(c, DetailScheduleActivity.class);
-                   // intent.putExtra("item",parent.);
+                    // intent.putExtra("item",parent.);
 
 
                     intent.putExtra(SCHEDULE_ID, item.getSchedule_i());
@@ -137,10 +123,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
         }
     }
 
-    private void refreshContent() {
-        final SessionAdapter adapter=new SessionAdapter(c,schedules);
-        lv.setAdapter(adapter);
-    }
+
+
 
     private int parseData()
     {
@@ -159,39 +143,39 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 int id=jo.getInt("0");
 
 
-               // intent.putExtra(SCHEDULE_DATE, item.getDay());
+                // intent.putExtra(SCHEDULE_DATE, item.getDay());
                 //intent.putExtra(COURSE_EXTRA, item.getCourse());
 
-                String schedule_id=jo.getString("0");
-                System.out.println(schedule_id);
+//                String schedule_id=jo.getString("0");
+//                System.out.println(schedule_id);
 
-                String scheduleday=jo.getString("1");
-                System.out.println(scheduleday);
+//                String scheduleday=jo.getString("1");
+//                System.out.println(scheduleday);
 
 
                 //intent.putExtra(SCHEDULE_HOUR, item.getStartTime());
-                String hour=jo.getString("2");
+                String hour=jo.getString("3");
                 System.out.println(hour);
 
                 //intent.putExtra(COURSE_EXTRA, item.getCourse());
-                String coursename=jo.getString("3");
+                String coursename=jo.getString("4");
                 System.out.println(coursename);
 
-                //intent.putExtra(COURSE_DESC, item.getCourse_desc());
-                String coursdesc=jo.getString("4");
-                System.out.println(coursdesc);
+//                //intent.putExtra(COURSE_DESC, item.getCourse_desc());
+//                String coursdesc=jo.getString("4");
+//                System.out.println(coursdesc);
 
 
                 // intent.putExtra(COURSE_COVER, item.getCourse_cover());
-                String coursecover=jo.getString("5");
-
-                coursecover="https://spartaapp.azurewebsites.net/Backend/partials/user_images/"+coursecover;
-
-                System.out.println(coursecover);
+//                String coursecover=jo.getString("5");
+//
+//                coursecover="https://spartaapp.azurewebsites.net/Backend/partials/user_images/"+coursecover;
+//
+//                System.out.println(coursecover);
 
                 //intent.putExtra(COURSE_CAPACITY, item.getCourse_maxC());//int
-             String coursecapacity=jo.getString("6");
-               System.out.println(coursecapacity);
+//                String coursecapacity=jo.getString("6");
+//                System.out.println(coursecapacity);
 
 
 
@@ -200,18 +184,18 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                 System.out.println(trainername);
 
-               // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
-                String trainerphoto=jo.getString("8");
-                trainerphoto="https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+trainerphoto;
-
-                System.out.println(trainerphoto);
+                // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
+//                String trainerphoto=jo.getString("8");
+//                trainerphoto="https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+trainerphoto;
+//
+//                System.out.println(trainerphoto);
 
 
 
 
                 //intent.putExtra(ROOM_NUMBER, item.getRoom_name());
-                String roomname=jo.getString("9");
-                System.out.println(roomname);
+//                String roomname=jo.getString("9");
+//                System.out.println(roomname);
 
 
 
@@ -219,17 +203,17 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                 schedule=new Session();
 
-                schedule.setSchedule_i(schedule_id);
+              //  schedule.setSchedule_i(schedule_id);
                 schedule.setStartTime(hour);
 
                 schedule.setCourse(coursename);
                 schedule.setTrainer(trainername);
-                schedule.setTrainer_photo(trainerphoto);
-                schedule.setCourse_cover(coursecover);
-                schedule.setCourse_desc(coursdesc);
-                schedule.setDay(scheduleday);
-                schedule.setRoom_name(roomname);
-              //  schedule.setCourse_maxC(coursecapacity);
+               // schedule.setTrainer_photo(trainerphoto);
+                //schedule.setCourse_cover(coursecover);
+              //  schedule.setCourse_desc(coursdesc);
+               // schedule.setDay(scheduleday);
+             ///   schedule.setRoom_name(roomname);
+                //  schedule.setCourse_maxC(coursecapacity);
 
                 schedules.add(schedule);
             }
@@ -243,5 +227,6 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
         return 0;
     }
+
 
 }

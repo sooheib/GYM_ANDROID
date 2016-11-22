@@ -1,5 +1,6 @@
 package selmibenromdhane.sparta_v1.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -13,13 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
+import selmibenromdhane.sparta_v1.activity.LoginActivity;
 import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.manager.Article;
 import selmibenromdhane.sparta_v1.parser.ScheduleDownloader;
 
-/**
- * Created by Belal on 2/3/2016.
- */
+
 
 //Our class extending fragment
 public class ScheduleGymFragment extends Fragment  {
@@ -75,6 +75,7 @@ public class ScheduleGymFragment extends Fragment  {
 
         new ScheduleDownloader(getActivity(), AppConfig.URL_SCHEDULE,classListView).execute();
        // mSwipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(swipeRefreshLayout);
+
 
 
 

@@ -12,6 +12,7 @@ import java.util.Map;
 public class Session {
 
     public int schedule_id;
+    public String schedule_i;
     public String day;
     public String startTime;
     public String endTime;
@@ -24,6 +25,14 @@ public class Session {
     public int course_maxC;
     public String trainer_photo;
     public String room_name;
+
+    public String getSchedule_i() {
+        return schedule_i;
+    }
+
+    public void setSchedule_i(String schedule_i) {
+        this.schedule_i = schedule_i;
+    }
 
     public String getCourse_cover() {
         return course_cover;

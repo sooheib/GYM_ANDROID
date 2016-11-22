@@ -110,6 +110,25 @@
     android:orientation="vertical"
     android:padding="10dp"
     >
+
+    <TextView
+        android:id="@+id/client_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="client_id"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorAccent"
+        />
+    <TextView
+        android:id="@+id/schedule_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="schedule_id"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorAccent"
+        />
+
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
