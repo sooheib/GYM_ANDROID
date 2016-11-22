@@ -24,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     private SessionManager session;
 
 
+
     private SQLiteUserHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
