@@ -14,10 +14,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import selmibenromdhane.sparta_v1.activity.DetailScheduleActivity;
+import selmibenromdhane.sparta_v1.activity.LoginActivity;
 import selmibenromdhane.sparta_v1.adapter.ScheduleAdapter;
 import selmibenromdhane.sparta_v1.adapter.SessionAdapter;
+import selmibenromdhane.sparta_v1.fragment.ScheduleOwnFragment;
 import selmibenromdhane.sparta_v1.manager.Session;
 
 /**
@@ -31,6 +34,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
     String jsonData;
     ListView lv;
 
+    public static String CLIENT_ID="client_id";
     public static String COURSE_EXTRA="course_code";
     public static String COURSE_COVER="course_cover";
     public static String COURSE_DESC="course_desc";
@@ -44,6 +48,8 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
     public static String SCHEDULE_DATE ="day";
 
     public static  String ROOM_NUMBER="room_number";
+    public String client_id;
+
 
     private ScheduleAdapter adapter;
 
@@ -56,6 +62,12 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
         this.c = c;
         this.jsonData = jsonData;
         this.lv = lv;
+    }
+
+
+    @Override
+    protected Integer doInBackground(Void... params) {
+      return   this.parseData();
     }
 
     @Override
@@ -71,11 +83,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 
     }
 
-    @Override
-    protected Integer doInBackground(Void... params) {
-        return this.parseData();
 
-    }
 
     @Override
     protected void onPostExecute(Integer result) {
@@ -128,6 +136,10 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 
     private int parseData()
     {
+
+        HashMap<String, String> map = new HashMap<String, String>();
+      //  List<NameValuePair> params = new ArrayList<NameValuePair>();
+
         try
         {
             JSONArray ja=new JSONArray(jsonData);
@@ -140,7 +152,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
             {
                 jo=ja.getJSONObject(i);
 
-                int id=jo.getInt("0");
+                String idC=jo.getString("0");
 
 
                 // intent.putExtra(SCHEDULE_DATE, item.getDay());
@@ -197,6 +209,16 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 //                String roomname=jo.getString("9");
 //                System.out.println(roomname);
 
+//                LoginActivity loginActivity=new LoginActivity();
+  //              String clientID=loginActivity.userId;
+
+
+                //clientID="12123";
+                //map.put("client_id",clientID);
+
+
+
+//System.out.println("kkkkkkkkkk"+clientID);
 
 
 
@@ -224,6 +246,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
         return 0;
     }

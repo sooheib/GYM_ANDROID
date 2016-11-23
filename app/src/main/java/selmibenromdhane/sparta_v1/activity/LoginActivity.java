@@ -28,7 +28,6 @@ import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.app.AppController;
 import selmibenromdhane.sparta_v1.helper.SQLiteUserHandler;
 import selmibenromdhane.sparta_v1.helper.SessionManager;
-import selmibenromdhane.sparta_v1.manager.Client;
 
 
 public class LoginActivity extends Activity {
@@ -40,7 +39,10 @@ public class LoginActivity extends Activity {
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteUserHandler db;
+    SharedPreferences sh;
+    SharedPreferences.Editor ed;
     int i=0;
+
 
 
     @Override
@@ -52,7 +54,13 @@ public class LoginActivity extends Activity {
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        //  btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
+
+
+
+        sh = getSharedPreferences("report",MODE_PRIVATE);
+        userId=sh.getString("userId","99");
+        inputEmail.setText(sh.getString("login",""));
+        inputPassword.setText(sh.getString("password",""));
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -76,8 +84,9 @@ public class LoginActivity extends Activity {
 
             String f=checkLogin(em, pass,i);
             System.out.println("******userId******/  " + userId);
+            System.out.println("******userId******/  " +sh.getString("userId","99"));
 
-            //userId = "2";
+
 
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -88,29 +97,29 @@ public class LoginActivity extends Activity {
 
 
 
-            // Login button Click Event
-            btnLogin.setOnClickListener(new View.OnClickListener() {
+        // Login button Click Event
+        btnLogin.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View view) {
-                    String email = inputEmail.getText().toString().trim();
-                    String password = inputPassword.getText().toString().trim();
+            public void onClick(View view) {
+                String email = inputEmail.getText().toString().trim();
+                String password = inputPassword.getText().toString().trim();
 
 
-                    // Check for empty data in the form
-                    if (!email.isEmpty() && !password.isEmpty()) {
-                        // login user
-                        i=0;
-                        String f=checkLogin(email, password,i);
-                        i=1;
-                    } else {
-                        // Prompt user to enter credentials
-                        Toast.makeText(getApplicationContext(),
-                                "Please enter the credentials!", Toast.LENGTH_LONG)
-                                .show();
-                    }
+                // Check for empty data in the form
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    // login user
+                    i=0;
+                    String f=checkLogin(email, password,i);
+                    i=1;
+                } else {
+                    // Prompt user to enter credentials
+                    Toast.makeText(getApplicationContext(),
+                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            .show();
                 }
+            }
 
-            });
+        });
 
     }
 
@@ -159,8 +168,15 @@ public class LoginActivity extends Activity {
                             String uid = jObj.getString("uid");
 
                             JSONObject user = jObj.getJSONObject("user");
-                            LoginActivity.userId= user.getString("id");
+                            userId= user.getString("id");
+                            ed=sh.edit();
+                            ed.putString("userId",userId);
+                            ed.putString("login",email);
+                            ed.putString("password",password);
+                            ed.commit();
                             System.out.println("**********user**********"+userId);
+                            System.out.println("**********user**********"+userId);
+
                             String name = user.getString("name");
                             String email = user.getString("email");
                             String created_at = user
