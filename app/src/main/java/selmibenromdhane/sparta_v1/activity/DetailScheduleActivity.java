@@ -96,7 +96,7 @@ public class DetailScheduleActivity extends AppCompatActivity {
     LoginActivity loginActivity=new LoginActivity();
     String idd=loginActivity.userId;
 
-
+//rrrr
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
