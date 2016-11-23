@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -21,13 +21,10 @@ import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,17 +53,14 @@ import java.util.Map;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.app.AppConfig;
-import selmibenromdhane.sparta_v1.app.AppController;
-import selmibenromdhane.sparta_v1.fragment.ScheduleGymFragment;
 import selmibenromdhane.sparta_v1.helper.SQLiteUserHandler;
 import selmibenromdhane.sparta_v1.helper.SessionManager;
-import selmibenromdhane.sparta_v1.manager.Client;
 import selmibenromdhane.sparta_v1.parser.ScheduleParser;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
 
 public class DetailScheduleActivity extends AppCompatActivity {
     private static final String KEY_SCHEDULE ="schedule_id" ;
-    private static final String KEY_CLIENT ="client_id" ;
+    private static final String KEY_CLIENT ="clientID" ;
 
     TextView tv1, tv2, tv3,tv4,tv5,tv6,tvclient,tvschedule;
 
@@ -82,31 +76,24 @@ public class DetailScheduleActivity extends AppCompatActivity {
     String room="";
     String day="";
     String scheduleID;
-    String client_id ="12123";
-    String maxC;
+    String clientID ="12123";
+    int maxC;
     String userID;
-
+    int countMember;
+    int test;
     private SessionManager session;
     private SQLiteUserHandler db;
     private ProgressDialog pDialog;
 
     private static final String TAG = DetailScheduleActivity.class.getSimpleName();
 
-
     LoginActivity loginActivity=new LoginActivity();
-    String idd=loginActivity.userId;
 
-//rrrr
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_schedule);
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("GO"));
-
-        System.out.println("ababababa"+idd);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -119,16 +106,12 @@ public class DetailScheduleActivity extends AppCompatActivity {
         tv5= (TextView) findViewById(R.id.description);
         tvclient=(TextView)findViewById(R.id.client_id);
         tvschedule=(TextView)findViewById(R.id.schedule_id);
+     //   seanceBDD=new SeanceBDD(this);
 
-
-//
         tv6= (TextView) findViewById(R.id.day);
-//        session = new SessionManager(getApplicationContext());
         db = new SQLiteUserHandler(getApplicationContext());
-//
+
         db.getUserDetails();
-
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -147,19 +130,18 @@ public class DetailScheduleActivity extends AppCompatActivity {
 
             scheduleID =intent.getStringExtra(ScheduleParser.SCHEDULE_ID);
             hour = intent.getStringExtra(ScheduleParser.SCHEDULE_HOUR);
-//            scheduleID=Integer.parseInt(intent.getStringExtra(ScheduleParser.SCHEDULE_DATE));
-            userID=loginActivity.userId;
-//            Client client=new Client();
-//            userID=client.getClient_id();
-            System.out.println("xxxxxxxxxxxxxxxxx:"+userID);
+            clientID =loginActivity.userId;
+            System.out.println("***********clientID:***************"+ clientID);
             cover=intent.getStringExtra(ScheduleParser.COURSE_COVER);
             room=intent.getStringExtra(ScheduleParser.ROOM_NUMBER);
             photo=intent.getStringExtra(ScheduleParser.TRAINER_PHOTO);
             description=intent.getStringExtra(ScheduleParser.COURSE_DESC);
             day=intent.getStringExtra(ScheduleParser.SCHEDULE_DATE);
-            maxC=intent.getStringExtra(ScheduleParser.COURSE_CAPACITY);
-            // client_idd=intent.getStringExtra(LoginActivity.CLIENT_ID);
+            System.out.println("test            "+intent.getIntExtra(ScheduleParser.COURSE_CAPACITY,0));
+            maxC=(intent.getIntExtra(ScheduleParser.COURSE_CAPACITY,0));
             ImageView toolbarImage= (ImageView) findViewById(R.id.toolbar);
+            System.out.println(intent.getIntExtra(ScheduleParser.COUNTMEMBER,0));
+            countMember=intent.getIntExtra(ScheduleParser.COUNTMEMBER,0);
 
             URL url = null;
             try {
@@ -223,15 +205,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
             Bitmap bitmap1 = BitmapFactory.decodeStream(input1);
 
             circleImageView.setImageBitmap(getCircleBitmap(bitmap1));
-
-            //  Drawable drawable1 = new BitmapDrawable(getResources(),bitmap1);
-
-
-            //circleImageView.setBackground(drawable1);
-
-
-
-
         }
 
 
@@ -244,15 +217,12 @@ public class DetailScheduleActivity extends AppCompatActivity {
         System.out.println("room: "+room);
         System.out.println("day:"  +day);
         System.out.println("max:"  +maxC);
-
-
-        System.out.println("schedule_idd:"  + scheduleID);
-        // System.out.println("client_idd:"  +client_idd);
+        System.out.println("countMember:"  +countMember);
 
 
 
-
-
+        System.out.println("schedule_id:"  + scheduleID);
+        System.out.println("clientID:"  + clientID);
 
         TextView tv1 = (TextView) findViewById(R.id.trainer);
         tv1.setText(trainer);
@@ -267,17 +237,25 @@ public class DetailScheduleActivity extends AppCompatActivity {
         tv5.setText(description);
         tv6.setText(day);
         tvschedule.setText(scheduleID);
-        tvclient.setText(client_id);
+        tvclient.setText(clientID);
 
 
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(countMember<=maxC)
+        {  diseableFab(true);
+            Toast.makeText(getApplicationContext(),"Cours complet",Toast.LENGTH_LONG);
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                BookSchedule(scheduleID,userID);
+                addReserv(clientID,scheduleID,AppConfig.URL_RESERV);
+                diseableFab(true);//desable FAB when booking added
+  //              seanceBDD.open();
+//                seanceBDD.insertSeance(Integer.parseInt(clientID),Integer.parseInt(scheduleID));
 
             }
 
@@ -289,28 +267,11 @@ public class DetailScheduleActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
-//            // Create the detail fragment and add it to the activity
-//            // using a fragment transaction.
-//            Bundle arguments = new Bundle();
-//            arguments.putString(ScheduleDetailFragment.ARG_ITEM_ID,
-//                    getIntent().getStringExtra(ScheduleDetailFragment.ARG_ITEM_ID));
-//            ScheduleDetailFragment fragment = new ScheduleDetailFragment();
-//            fragment.setArguments(arguments);
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.scheduleDetail, fragment)
-//                    .commit();
+//
         }
     }
 
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-      //      String client_id = intent.getStringExtra(LoginActivity.CLIENT_ID);
-            //    System.out.println("kkkkkkkkkkkkkkkk:"+client_idd);
-            //  tvclient.setText(client_idd);
-        }
-    };
 
 
 
@@ -357,7 +318,7 @@ public class DetailScheduleActivity extends AppCompatActivity {
     public void Booking(View view) {
 
         //  int scheduleID=Integer.parseInt(schedule_idd);
-        //int client_id=Integer.parseInt(client_idd);
+        //int clientID=Integer.parseInt(client_idd);
         BookSchedule(scheduleID, userID);
     }
 
@@ -404,9 +365,12 @@ public class DetailScheduleActivity extends AppCompatActivity {
                             if(code.equals("failed"))
                             {
                                 Toast.makeText(getApplicationContext(),code, Toast.LENGTH_LONG).show();
+                                test=0;
                             }
                             else {
                                 Toast.makeText(getApplicationContext(),code, Toast.LENGTH_LONG).show();
+                                test=1;
+
 
                             }
                         } catch (JSONException e) {
@@ -434,5 +398,13 @@ public class DetailScheduleActivity extends AppCompatActivity {
         MySingleton.getinstance(DetailScheduleActivity.this).addToRequest(stringRequest);
     }
 
+    public void diseableFab(Boolean test) //desable FAB when booking added
+    {        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        if (test)
+        {
+            fab.setVisibility(FloatingActionButton.INVISIBLE);
+        }
+    }
 }
+

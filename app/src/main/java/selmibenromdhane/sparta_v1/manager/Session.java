@@ -25,6 +25,25 @@ public class Session {
     public int course_maxC;
     public String trainer_photo;
     public String room_name;
+    public int countMumber;
+
+    public String getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(String maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public String maxCapacity;
+
+    public int getCountMumber() {
+        return countMumber;
+    }
+
+    public void setCountMumber(int countMumber) {
+        this.countMumber = countMumber;
+    }
 
     public String getSchedule_i() {
         return schedule_i;

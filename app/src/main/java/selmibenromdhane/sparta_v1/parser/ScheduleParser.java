@@ -49,6 +49,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
     public static String SCHEDULE_DATE ="day";
 
     public static  String ROOM_NUMBER="room_number";
+    public static  String COUNTMEMBER="countMumber";
+    public static  String MAX_CAPACITY="max_capacity";
 
 
 
@@ -103,9 +105,9 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
         }else {
             //BIND DATA TO LISTVIEW
             final SessionAdapter adapter=new SessionAdapter(c,schedules);
-              lv.setAdapter(adapter);
+            lv.setAdapter(adapter);
 
-         //   lvv.setAdapter(adapter);
+            //   lvv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -116,7 +118,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
 
                     Intent intent=new Intent(c, DetailScheduleActivity.class);
-                   // intent.putExtra("item",parent.);
+                    // intent.putExtra("item",parent.);
 
 
                     intent.putExtra(SCHEDULE_ID, item.getSchedule_i());
@@ -129,6 +131,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                     intent.putExtra(COURSE_DESC, item.getCourse_desc());
                     intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
                     intent.putExtra(ROOM_NUMBER, item.getRoom_name());
+                    intent.putExtra(COUNTMEMBER,item.getCountMumber());
 
                     c.startActivity(intent);
 
@@ -159,7 +162,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 int id=jo.getInt("0");
 
 
-               // intent.putExtra(SCHEDULE_DATE, item.getDay());
+                // intent.putExtra(SCHEDULE_DATE, item.getDay());
                 //intent.putExtra(COURSE_EXTRA, item.getCourse());
 
                 String schedule_id=jo.getString("0");
@@ -190,8 +193,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 System.out.println(coursecover);
 
                 //intent.putExtra(COURSE_CAPACITY, item.getCourse_maxC());//int
-             String coursecapacity=jo.getString("6");
-               System.out.println(coursecapacity);
+                int coursecapacity=jo.getInt("6");
+                System.out.println("coursecapacity"+coursecapacity);
 
 
 
@@ -200,7 +203,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                 System.out.println(trainername);
 
-               // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
+                // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
                 String trainerphoto=jo.getString("8");
                 trainerphoto="https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+trainerphoto;
 
@@ -213,6 +216,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 String roomname=jo.getString("9");
                 System.out.println(roomname);
 
+                String countMumber=jo.getString("10");
+                System.out.println("countMumber"+countMumber);
 
 
 
@@ -229,7 +234,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 schedule.setCourse_desc(coursdesc);
                 schedule.setDay(scheduleday);
                 schedule.setRoom_name(roomname);
-              //  schedule.setCourse_maxC(coursecapacity);
+                schedule.setCountMumber(Integer.parseInt(countMumber));
+                schedule.setCourse_maxC(coursecapacity);
 
                 schedules.add(schedule);
             }
