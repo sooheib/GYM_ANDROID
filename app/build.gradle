@@ -45,5 +45,6 @@ dependencies {
     compile 'com.github.clans:fab:1.6.4'
 
     compile 'com.jakewharton:butterknife:8.1.0'
+    compile 'com.yalantis:flipviewpager:1.0.0'
 
 }

@@ -99,7 +99,7 @@ public class BaseActivity extends AppCompatActivity {
                         return true;
                     case R.id.trainers:
                         Toast.makeText(getApplicationContext(),"Trainers Selected", Toast.LENGTH_SHORT).show();
-                        Intent intent5 = new Intent(BaseActivity.this, TrainersActivity.class);
+                        Intent intent5 = new Intent(BaseActivity.this,TrainersActivity.class);
                         startActivity(intent5);
                         finish();
                         return true;
