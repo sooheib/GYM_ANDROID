@@ -95,7 +95,12 @@ public class BaseActivity extends AppCompatActivity {
                     // For rest of the options we just show a toast on click
 
                     case R.id.classes:
-                        classes();
+                       // classes();
+
+                        Toast.makeText(getApplicationContext(),"Class Selected", Toast.LENGTH_SHORT).show();
+                        Intent intentc = new Intent(BaseActivity.this,ClassesActivity.class);
+                        startActivity(intentc);
+                        finish();
                         return true;
                     case R.id.trainers:
                         Toast.makeText(getApplicationContext(),"Trainers Selected", Toast.LENGTH_SHORT).show();

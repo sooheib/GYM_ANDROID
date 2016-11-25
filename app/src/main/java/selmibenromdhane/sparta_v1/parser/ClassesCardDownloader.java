@@ -3,8 +3,7 @@ package selmibenromdhane.sparta_v1.parser;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.GridView;
-import android.widget.ListView;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -14,27 +13,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
+/**
+ * Created by sooheib on 11/25/16.
+ */
 
-public class ClassDownloader extends AsyncTask<Void,Void,String> {
-
+public class ClassesCardDownloader extends AsyncTask<Void,Void,String> {
 
     Context c;
     String urlAddress;
-    ListView lv;
-    GridView lvv;
+    RecyclerView rv;
 
     ProgressDialog pd;
 
-    public ClassDownloader(Context c, String urlAddress, ListView lv) {
-        this.c = c;
-        this.urlAddress = urlAddress;
-        this.lv = lv;
-    }
 
-    public ClassDownloader(Context c, String urlAddress, GridView lvv) {
+
+    public ClassesCardDownloader(Context c, String urlAddress, RecyclerView rv) {
         this.c = c;
         this.urlAddress = urlAddress;
-        this.lvv = lvv;
+        this.rv = rv;
     }
 
     @Override
@@ -63,7 +59,7 @@ public class ClassDownloader extends AsyncTask<Void,Void,String> {
             Toast.makeText(c,"Unsuccessful,No data Retrieved", Toast.LENGTH_SHORT).show();
         }else {
             //PARSE
-            ClassParser parser=new ClassParser(c,jsonData,lvv);
+            ClassesCardParser parser=new ClassesCardParser(c,jsonData,rv);
             parser.execute();
 
         }
@@ -104,17 +100,3 @@ public class ClassDownloader extends AsyncTask<Void,Void,String> {
         return null;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

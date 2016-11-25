@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
-import selmibenromdhane.sparta_v1.adapter.ClassesCustomAdapter;
 import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.manager.Article;
-import selmibenromdhane.sparta_v1.parser.ScheduleDownloader;
 import selmibenromdhane.sparta_v1.parser.ScheduleOwnDownloader;
 
 

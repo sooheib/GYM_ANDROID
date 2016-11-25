@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import selmibenromdhane.sparta_v1.R;
-import selmibenromdhane.sparta_v1.parser.ClassParser;
+import selmibenromdhane.sparta_v1.adapter.ClassesRecyclerViewAdapter;
 
 public class DetailsClassesActivity extends AppCompatActivity {
     TextView tv1, tv2,tv3;
@@ -50,9 +50,9 @@ public class DetailsClassesActivity extends AppCompatActivity {
         //setText(new Date)
         Intent intent = getIntent();
         if (null != intent) {
-            userProfession = intent.getStringExtra(ClassParser.DESCRIPTION_EXTRA);
-            userName=intent.getStringExtra(ClassParser.COURSE_EXTRA);
-            userPic=intent.getStringExtra(ClassParser.IMAGE_EXTRA);
+            userProfession = intent.getStringExtra(ClassesRecyclerViewAdapter.DESCRIPTION_EXTRA);
+            userName=intent.getStringExtra(ClassesRecyclerViewAdapter.COURSE_EXTRA);
+            userPic=intent.getStringExtra(ClassesRecyclerViewAdapter.IMAGE_EXTRA);
             //String url = "" //place your url here
             ImageView toolbarImage= (ImageView) findViewById(R.id.toolbar);
 
