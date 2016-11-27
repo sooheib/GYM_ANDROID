@@ -24,6 +24,8 @@
     <string name="closeDrawer">Navigation View</string>
     <string name="openDrawer">Navigation View Closed</string>
 
+    <string name="year">Date</string>
+    <string name="location">Location</string>
 
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -74,5 +76,37 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
+
+    <string-array name="paintings_titles">
+        <item>Event1</item>
+        <item>Event2</item>
+        <item>Event3</item>
+        <item>Event4</item>
+        <item>Event5</item>
+    </string-array>
+
+    <string-array name="paintings_years">
+        <item>16/12/2016</item>
+        <item>17/12/2016</item>
+        <item>18/12/2016</item>
+        <item>19/12/2016</item>
+        <item>20/12/2016</item>
+    </string-array>
+
+    <string-array name="paintings_locations">
+        <item>Hotel 1, Hammamet</item>
+        <item>Hotel 2, Sousse</item>
+        <item>Hotel 3, Gammart</item>
+        <item>Hotel 4, Bizert</item>
+        <item>Hotel 5, Tabarka</item>
+    </string-array>
+
+    <array name="paintings_images">
+        <item>@drawable/event1</item>
+        <item>@drawable/event2</item>
+        <item>@drawable/event1</item>
+        <item>@drawable/event2</item>
+        <item>@drawable/event1</item>
+    </array>
 
 </resources>

@@ -15,7 +15,7 @@ public class UtilsTrainers {
 
     static {
         friends.add(new Friend(R.drawable.anastasia, "ANASTASIA", R.color.sienna, "Sport", "Literature", "Music", "Art", "Technology"));
-        friends.add(new Friend(R.drawable.irene, "IRENE", R.color.saffron, "Travelling", "Flights", "Books", "Painting", "Design"));
+        friends.add(new Friend(R.drawable.irene, "IRENE", R.color.saffron, "Travelling", "Flights", "Books", "Event", "Design"));
         friends.add(new Friend(R.drawable.kate, "KATE", R.color.green, "Sales", "Pets", "Skiing", "Hairstyles", "Сoffee"));
         friends.add(new Friend(R.drawable.paul, "PAUL", R.color.pink, "Android", "Development", "Design", "Wearables", "Pets"));
         friends.add(new Friend(R.drawable.daria, "DARIA", R.color.orange, "Design", "Fitness", "Healthcare", "UI/UX", "Chatting"));

@@ -2,8 +2,10 @@ package selmibenromdhane.sparta_v1.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +35,7 @@ public class BaseActivity extends AppCompatActivity {
 
 
     }
+    @NonNull
     @Override
     public void setContentView(int layoutResID)
     {
@@ -200,6 +203,16 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    @NonNull
+    @Override
+    public ActionBar getSupportActionBar() {
+        // Making getSupportActionBar() method to be @NonNull
+        ActionBar actionBar = super.getSupportActionBar();
+        if (actionBar == null) {
+            throw new NullPointerException("Action bar was not initialized");
+        }
+        return actionBar;
+    }
 
 
 //    @Override

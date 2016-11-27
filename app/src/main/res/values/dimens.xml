@@ -18,6 +18,7 @@
 
     <dimen name="icon_mask">100dp</dimen>
     <dimen name="phototrainer">110dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
 
     <dimen name="message_list_item_vertical_margin">8dp</dimen>
     <dimen name="login_vertical_margin">32dp</dimen>

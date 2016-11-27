@@ -31,7 +31,6 @@
             android:launchMode="singleTop" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.EventsActivity" />
         <activity android:name=".activity.ExercisesActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.HomeActivity" />
@@ -39,7 +38,8 @@
         <activity android:name=".activity.DetailScheduleActivity" />
         <activity android:name=".activity.DetailsClassesActivity" />
         <activity android:name=".activity.TrainersActivity" />
-        <activity android:name=".activity.ClassesActivity"></activity>
+        <activity android:name=".activity.ClassesActivity" />
+        <activity android:name=".activity.EventsActivity"></activity>
     </application>
 
 </manifest>
