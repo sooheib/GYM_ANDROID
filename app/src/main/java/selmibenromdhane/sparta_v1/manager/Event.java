@@ -1,59 +1,59 @@
 package selmibenromdhane.sparta_v1.manager;
 
-
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-
-import selmibenromdhane.sparta_v1.R;
-
+/**
+ * Created by sooheib on 11/29/16.
+ */
 
 public class Event {
 
-    private final int imageId;
-    private final String title;
-    private final String year;
-    private final String location;
+    public String event_day;
+    public String event_duration;
+    public String event_name;
+    public String event_cover;
+    public String event_location;
 
-    private Event(int imageId, String title, String year, String location) {
-        this.imageId = imageId;
-        this.title = title;
-        this.year = year;
-        this.location = location;
+    public Event() {
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getEvent_day() {
+        return event_day;
     }
 
-    public String getTitle() {
-        return title;
+    public void setEvent_day(String event_day) {
+        this.event_day = event_day;
     }
 
-    public String getYear() {
-        return year;
+    public String getEvent_duration() {
+        return event_duration;
     }
 
-    public String getLocation() {
-        return location;
+    public void setEvent_duration(String event_duration) {
+        this.event_duration = event_duration;
     }
 
-    public static Event[] getAllPaintings(Resources res) {
-        String[] titles = res.getStringArray(R.array.paintings_titles);
-        String[] years = res.getStringArray(R.array.paintings_years);
-        String[] locations = res.getStringArray(R.array.paintings_locations);
-        TypedArray images = res.obtainTypedArray(R.array.paintings_images);
-
-        int size = titles.length;
-        Event[] paintings = new Event[size];
-
-        for (int i = 0; i < size; i++) {
-            final int imageId = images.getResourceId(i, -1);
-            paintings[i] = new Event(imageId, titles[i], years[i], locations[i]);
-        }
-
-        images.recycle();
-
-        return paintings;
+    public String getEvent_name() {
+        return event_name;
     }
+
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
+    }
+
+    public String getEvent_cover() {
+        return event_cover;
+    }
+
+    public void setEvent_cover(String event_cover) {
+        this.event_cover = event_cover;
+    }
+
+    public String getEvent_location() {
+        return event_location;
+    }
+
+    public void setEvent_location(String event_location) {
+        this.event_location = event_location;
+    }
+
 
 }

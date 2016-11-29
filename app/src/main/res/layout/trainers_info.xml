@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@android:color/transparent"
+    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,14 +16,17 @@
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
+            android:text="Taebo"
             android:id="@+id/interest_1" />
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
+            android:text="Cardio"
             android:id="@+id/interest_2" />
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
+            android:text="Zumba"
             android:id="@+id/interest_3" />
     </LinearLayout>
 
@@ -36,10 +39,13 @@
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             android:id="@+id/interest_4"
-            style="@style/TextView.Interest" />
+            style="@style/TextView.Interest"
+            android:text="salsa"
+            />
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             android:id="@+id/interest_5"
+            android:text="salsa"
             style="@style/TextView.Interest" />
     </LinearLayout>
 

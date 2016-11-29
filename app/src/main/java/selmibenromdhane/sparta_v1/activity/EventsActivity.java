@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,23 +16,42 @@ import com.alexvasilkov.foldablelayout.UnfoldableView;
 import com.alexvasilkov.foldablelayout.shading.GlanceFoldShading;
 
 import selmibenromdhane.sparta_v1.R;
-import selmibenromdhane.sparta_v1.adapter.EventsAdapter;
+import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.manager.Event;
-import selmibenromdhane.sparta_v1.utils.EventUtils;
+import selmibenromdhane.sparta_v1.parser.EventDownloader;
+import selmibenromdhane.sparta_v1.utils.GridClient;
 
-public class EventsActivity extends BaseActivity {
+public class EventsActivity extends BaseActivity1 {
 
     private View listTouchInterceptor;
     private View detailsLayout;
     private UnfoldableView unfoldableView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            //your codes here
+
+        }
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ListView listView = Views.find(this, R.id.list_view);
-        listView.setAdapter(new EventsAdapter(this));
+
+        new EventDownloader(EventsActivity.this, AppConfig.URL_EVENT,listView).execute();
+
+       // listView.setAdapter(new EventsAdapter(EventsActivity.this,events));
+     //  listView.setAdapter(new EventsAdapter(this));
+        System.out.println("good1");
+
 
         listTouchInterceptor = Views.find(this, R.id.touch_interceptor_view);
         listTouchInterceptor.setClickable(false);
@@ -79,24 +99,25 @@ public class EventsActivity extends BaseActivity {
             super.onBackPressed();
         }
     }
+
     public void openDetails(View coverView, Event painting) {
         final ImageView image = Views.find(detailsLayout, R.id.details_image);
         final TextView title = Views.find(detailsLayout, R.id.details_title);
         final TextView description = Views.find(detailsLayout, R.id.details_text);
 
-        EventUtils.loadPaintingImage(image, painting);
-        title.setText(painting.getTitle());
+        GridClient.loadPaintingImage(image, painting);
+        title.setText(painting.getEvent_name());
 
         SpannableBuilder builder = new SpannableBuilder(this);
         builder
                 .createStyle().setFont(Typeface.DEFAULT_BOLD).apply()
                 .append(R.string.year).append(": ")
                 .clearStyle()
-                .append(painting.getYear()).append("\n")
+                .append(painting.getEvent_day()).append("\n")
                 .createStyle().setFont(Typeface.DEFAULT_BOLD).apply()
                 .append(R.string.location).append(": ")
                 .clearStyle()
-                .append(painting.getLocation());
+                .append(painting.getEvent_location());
         description.setText(builder.build());
 
         unfoldableView.unfold(coverView, detailsLayout);

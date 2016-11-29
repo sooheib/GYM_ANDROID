@@ -1,5 +1,6 @@
 package selmibenromdhane.sparta_v1.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,9 +19,11 @@ import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.helper.SQLiteUserHandler;
 import selmibenromdhane.sparta_v1.helper.SessionManager;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity1 extends Activity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+
     private SessionManager session;
 
 
@@ -40,7 +43,7 @@ public class BaseActivity extends AppCompatActivity {
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
         super.setContentView(fullView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // setSupportActionBar(toolbar);
 
 
 
@@ -86,7 +89,7 @@ public class BaseActivity extends AppCompatActivity {
 //                        fragmentTransaction.replace(R.id.viewpager,fragment);
 //                        fragmentTransaction.commit();
 
-                        Intent intent = new Intent(BaseActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(BaseActivity1.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
                         return true;
@@ -97,18 +100,18 @@ public class BaseActivity extends AppCompatActivity {
                         // classes();
 
                         Toast.makeText(getApplicationContext(),"Class Selected", Toast.LENGTH_SHORT).show();
-                        Intent intentc = new Intent(BaseActivity.this,ClassesActivity.class);
+                        Intent intentc = new Intent(BaseActivity1.this,ClassesActivity.class);
                         startActivity(intentc);
                         finish();
                         return true;
                     case R.id.trainers:
                         Toast.makeText(getApplicationContext(),"Trainers Selected", Toast.LENGTH_SHORT).show();
-                        Intent intent5 = new Intent(BaseActivity.this,TrainersActivity.class);
+                        Intent intent5 = new Intent(BaseActivity1.this,TrainersActivity.class);
                         startActivity(intent5);
                         finish();
                         return true;
                     case R.id.events:
-                        Intent intent1 = new Intent(BaseActivity.this,EventsActivity.class);
+                        Intent intent1 = new Intent(BaseActivity1.this,EventsActivity.class);
                         startActivity(intent1);
                         finish();
 
@@ -118,13 +121,13 @@ public class BaseActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Setting Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.exercise:
-                        Intent intent2= new Intent(BaseActivity.this, ExercisesActivity.class);
+                        Intent intent2= new Intent(BaseActivity1.this, ExercisesActivity.class);
                         startActivity(intent2);
                         finish();
                         Toast.makeText(getApplicationContext(),"Exercises Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.perso:
-                        Intent intent3 = new Intent(BaseActivity.this, ProfileActivity.class);
+                        Intent intent3 = new Intent(BaseActivity1.this, ProfileActivity.class);
                         startActivity(intent3);
                         finish();
                         Toast.makeText(getApplicationContext(),"Profile Selected", Toast.LENGTH_SHORT).show();
@@ -182,7 +185,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void classes() {
-        Intent intent = new Intent(BaseActivity.this, ClassesActivity.class);
+        Intent intent = new Intent(BaseActivity1.this, ClassesActivity.class);
         startActivity(intent);
         finish();
     }
@@ -193,22 +196,22 @@ public class BaseActivity extends AppCompatActivity {
         db.deleteUsers();
 
         // Launching the login activity
-        Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+        Intent intent = new Intent(BaseActivity1.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
-
-
-    @NonNull
-    @Override
-    public ActionBar getSupportActionBar() {
-        // Making getSupportActionBar() method to be @NonNull
-        ActionBar actionBar = super.getSupportActionBar();
-        if (actionBar == null) {
-            throw new NullPointerException("Action bar was not initialized");
-        }
-        return actionBar;
-    }
+//
+//
+//    @NonNull
+//    @Override
+//    public ActionBar getSupportActionBar() {
+//        // Making getSupportActionBar() method to be @NonNull
+//        ActionBar actionBar = super.getSupportActionBar();
+//        if (actionBar == null) {
+//            throw new NullPointerException("Action bar was not initialized");
+//        }
+//        return actionBar;
+//    }
 
 
 //    @Override

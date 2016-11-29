@@ -6,7 +6,7 @@
     android:background="@drawable/background1"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.ClassesActivity">
+    tools:context=".activity.BaseActivity">
 
     <LinearLayout
         android:layout_height="match_parent"
@@ -17,7 +17,6 @@
             android:id="@+id/toolbar"
             layout="@layout/tool_bar"
             android:titleTextColor="@android:color/white"
-
             />
 
         <FrameLayout

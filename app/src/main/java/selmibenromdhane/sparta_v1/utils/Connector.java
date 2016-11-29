@@ -1,4 +1,4 @@
-package selmibenromdhane.sparta_v1.parser;
+package selmibenromdhane.sparta_v1.utils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

@@ -23,7 +23,6 @@ public class ClassesActivity extends BaseActivity{
         RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
         rView.setLayoutManager(lLayout);
 
-
         new ClassesCardDownloader(ClassesActivity.this, AppConfig.URL_CLASSES,rView).execute();
 
     }

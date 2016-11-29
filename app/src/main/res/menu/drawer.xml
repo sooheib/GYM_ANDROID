@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<menu></menu>
+    <menu></menu>
     <group
         android:checkableBehavior="single" android:id="@+id/grp1"
         >
@@ -65,11 +65,11 @@
         </shape>
         <item
 
-        android:checkableBehavior="single"
-        android:id="@+id/signout"
-        android:checked="false"
-        android:icon="@drawable/exit"
-        android:title="@string/navigation_item_8" />
+            android:checkableBehavior="single"
+            android:id="@+id/signout"
+            android:checked="false"
+            android:icon="@drawable/exit"
+            android:title="@string/navigation_item_8" />
     </group>
 
 </menu>

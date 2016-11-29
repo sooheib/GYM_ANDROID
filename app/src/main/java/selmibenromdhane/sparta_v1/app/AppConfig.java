@@ -13,6 +13,12 @@ public class AppConfig {
 	public static String URL_BOOKING = "https://spartaapp.azurewebsites.net/Backend/android_api/booking.php";
 	public static String URL_RESERV = "https://spartaapp.azurewebsites.net/Backend/android_api/reservsean.php";
 
+	public static String URL_TRAINER = "https://spartaapp.azurewebsites.net/Backend/android_api/getTrainer.php";
+	public static String URL_DELETEBOOkING = "https://spartaapp.azurewebsites.net/Backend/android_api/deleteBooking.php";
+
+
+	public static String URL_EVENT = "https://spartaapp.azurewebsites.net/Backend/android_api/getEvent.php";
+
 
 	//public static String URL_LOGIN = "http://192.168.1.3/SPARTA_GYM/android_api/login.php";
 
@@ -20,8 +26,7 @@ public class AppConfig {
 
 	public static String URL_SCHEDULE = "https://spartaapp.azurewebsites.net/Backend/android_api/getSchedule.php";
 
-	public static String URL_OWNSCHEDULE =
-			"https://spartaapp.azurewebsites.net/Backend/android_api/getClientSchedule.php";
+	public static String URL_OWNSCHEDULE = "https://spartaapp.azurewebsites.net/Backend/android_api/getClientSchedule.php";
 
 
 //	final static String URL_CLASSES="http://192.168.1.3/Upload-Insert-Update-Delete" +

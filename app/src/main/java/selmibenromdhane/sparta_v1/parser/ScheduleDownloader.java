@@ -3,8 +3,6 @@ package selmibenromdhane.sparta_v1.parser;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+
+import selmibenromdhane.sparta_v1.utils.Connector;
 
 /**
  * Created by sooheib on 11/8/16.
@@ -74,7 +74,7 @@ public class ScheduleDownloader extends AsyncTask<Void,Void,String> {
 
     private String downloadData()
     {
-        HttpURLConnection con=Connector.connect(urlAddress);
+        HttpURLConnection con= Connector.connect(urlAddress);
         if(con==null)
         {
             return null;

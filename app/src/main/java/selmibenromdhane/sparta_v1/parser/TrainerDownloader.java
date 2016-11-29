@@ -3,7 +3,6 @@ package selmibenromdhane.sparta_v1.parser;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,20 +16,17 @@ import java.net.HttpURLConnection;
 import selmibenromdhane.sparta_v1.utils.Connector;
 
 /**
- * Created by sooheib on 11/21/16.
+ * Created by sooheib on 11/29/16.
  */
 
-public class ScheduleOwnDownloader extends AsyncTask<Void,Void,String> {
-
+public class TrainerDownloader extends AsyncTask <Void,Void,String>  {
     Context c;
     String urlAddress;
     ListView lv;
-    GridView lvv;
 
     ProgressDialog pd;
 
-
-    public ScheduleOwnDownloader(Context c, String urlAddress, ListView lv) {
+    public TrainerDownloader(Context c, String urlAddress, ListView lv) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
@@ -65,7 +61,7 @@ public class ScheduleOwnDownloader extends AsyncTask<Void,Void,String> {
         }else {
             //PARSE
 
-            ScheduleOwnParser parser=new ScheduleOwnParser(c,jsonData,lv);
+            TrainerParser parser=new TrainerParser(c,jsonData,lv);
             parser.execute();
 
         }
@@ -104,4 +100,5 @@ public class ScheduleOwnDownloader extends AsyncTask<Void,Void,String> {
 
         return null;
     }
+
 }

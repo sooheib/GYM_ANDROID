@@ -1,5 +1,9 @@
 package selmibenromdhane.sparta_v1.manager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by sooheib on 11/12/16.
  */
@@ -11,7 +15,9 @@ public class Trainer {
     public String last_name;
     public String username;
     public String password;
+    public String photo;
     public int admin;
+    private List<String> interests = new ArrayList<>();
 
     public Trainer() {
     }
@@ -23,6 +29,12 @@ public class Trainer {
         this.username = username;
         this.password = password;
         this.admin = admin;
+    }
+
+    public Trainer(String last_name, String photo,String... interest) {
+        this.last_name = last_name;
+        this.photo = photo;
+        interests.addAll(Arrays.asList(interest));
     }
 
     public int getEmployee_id() {
@@ -71,5 +83,21 @@ public class Trainer {
 
     public void setAdmin(int admin) {
         this.admin = admin;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public List<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
     }
 }

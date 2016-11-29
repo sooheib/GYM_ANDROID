@@ -1,5 +1,13 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.EventsActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar"
+        android:titleTextColor="@android:color/white"
+
+        />
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
@@ -13,7 +21,8 @@
         android:listSelector="@android:color/transparent"
         android:padding="12dp"
         android:scrollbarStyle="outsideOverlay"
-        android:scrollingCache="false" />
+        android:scrollingCache="false"
+        />
 
     <View
         android:id="@+id/touch_interceptor_view"

@@ -27,6 +27,6 @@
         android:padding="8dp"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:textSize="22sp" />
+        android:textSize="22sp" />EventsAdapter1
 
 </FrameLayout>

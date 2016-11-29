@@ -7,7 +7,7 @@
         android:id="@+id/calendar"
         android:icon="@drawable/calendar1"
         app:showAsAction="ifRoom|withText"
-        android:title="Profile">
+        android:name="Profile">
     </item>
 
 </menu>

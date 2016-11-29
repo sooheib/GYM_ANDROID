@@ -38,6 +38,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +59,7 @@ import selmibenromdhane.sparta_v1.helper.SQLiteUserHandler;
 import selmibenromdhane.sparta_v1.helper.SessionManager;
 import selmibenromdhane.sparta_v1.parser.ScheduleParser;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
+import selmibenromdhane.sparta_v1.utils.UrltoBitmap;
 
 public class DetailScheduleActivity extends AppCompatActivity {
     private static final String KEY_SCHEDULE ="schedule_id" ;
@@ -67,6 +70,7 @@ public class DetailScheduleActivity extends AppCompatActivity {
     private static final String TAG1 = DetailScheduleActivity.class.getSimpleName();
 
 
+    Context context;
     String description="";
     String course = "";
     String trainer = "";
@@ -143,35 +147,14 @@ public class DetailScheduleActivity extends AppCompatActivity {
             System.out.println(intent.getIntExtra(ScheduleParser.COUNTMEMBER,0));
             countMember=intent.getIntExtra(ScheduleParser.COUNTMEMBER,0);
 
-            URL url = null;
-            try {
-                url = new URL(cover);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            HttpURLConnection connection = null;
-            try {
-                connection = (HttpURLConnection) url.openConnection();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            connection.setDoInput(true);
-            try {
-                connection.connect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            InputStream input = null;
-            try {
-                input = connection.getInputStream();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            UrltoBitmap drawableSchedule=new UrltoBitmap();
+            Bitmap coverSchedule=drawableSchedule.getBitmapFromURL(cover);
+            Drawable drawableS = new BitmapDrawable(getResources(), coverSchedule);
+            appBarLayout.setBackground(drawableS);
 
 
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Drawable drawable = new BitmapDrawable(getResources(), myBitmap);
-            appBarLayout.setBackground(drawable);
+
+
 
 
 
@@ -200,11 +183,11 @@ public class DetailScheduleActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-
             Bitmap bitmap1 = BitmapFactory.decodeStream(input1);
 
-            circleImageView.setImageBitmap(getCircleBitmap(bitmap1));
+           // Picasso.with(DetailScheduleActivity.this).load(photo).into(circleImageView);
+
+               circleImageView.setImageBitmap(getCircleBitmap(bitmap1));
         }
 
 
