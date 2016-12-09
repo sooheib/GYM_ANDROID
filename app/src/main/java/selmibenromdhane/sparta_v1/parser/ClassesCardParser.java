@@ -72,6 +72,7 @@ public class ClassesCardParser extends AsyncTask<Void,Void,Integer> {
            // final CustomAdapter adapter=new CustomAdapter(c,spacecrafts);
 //            lv.setAdapter(adapter);
             rv.setAdapter(recyclerViewAdapter);
+
 //            rv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                @Override
 //                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -139,5 +140,10 @@ public class ClassesCardParser extends AsyncTask<Void,Void,Integer> {
 
         return 0;
     }
+
+
+
+
+
 
 }

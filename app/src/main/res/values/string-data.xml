@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin
+    \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin</string>
+
+    <string name="short_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+
+    <string name="middle_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin</string>
+
+    <string name="long_lorem_ipsum">
+        Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.
+        \n\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat massa. Praesent sit amet lacinia augue, mollis tempor dolor.
+    </string>
+
+
+    <!--########### DUMMY DATA ###########-->
+    <string-array name="people_names">
+        <item>Anderson Thomas</item>
+        <item>Adams Green</item>
+        <item>Laura Michelle</item>
+        <item>Betty L</item>
+        <item>Miller Wilson</item>
+
+        <item>Garcia Lewis</item>
+        <item>Roberts Turner</item>
+        <item>Mary Jackson</item>
+        <item>Sarah Scott</item>
+        <item>Kevin John</item>
+
+        <item>Elizabeth</item>
+        <item>Evans Collins</item>
+        <item>Roberts</item>
+        <item>Betty C</item>
+        <item>Susan Lee</item>
+    </string-array>
+
+    <integer-array name="people_photos">
+        <item>@drawable/photo_male_1</item>
+        <item>@drawable/photo_male_2</item>
+        <item>@drawable/photo_female_1</item>
+        <item>@drawable/photo_female_2</item>
+        <item>@drawable/photo_male_3</item>
+
+        <item>@drawable/photo_female_3</item>
+        <item>@drawable/photo_male_4</item>
+        <item>@drawable/photo_female_4</item>
+        <item>@drawable/photo_female_5</item>
+        <item>@drawable/photo_male_5</item>
+
+        <item>@drawable/photo_female_6</item>
+        <item>@drawable/photo_male_6</item>
+        <item>@drawable/photo_male_7</item>
+        <item>@drawable/photo_female_7</item>
+        <item>@drawable/photo_female_8</item>
+    </integer-array>
+
+    <integer-array name="feed_photos">
+        <item>@drawable/feed_photo_1</item>
+        <item>@drawable/feed_photo_2</item>
+        <item>@drawable/feed_photo_3</item>
+        <item>@drawable/feed_photo_4</item>
+        <item>@drawable/feed_photo_5</item>
+        <item>@drawable/feed_photo_6</item>
+        <item>@drawable/feed_photo_7</item>
+    </integer-array>
+
+    <string-array name="friend_photo_album_name">
+        <item>Holiday</item>
+        <item>My Performance</item>
+        <item>Nature Trip</item>
+        <item>Photograph</item>
+        <item>Food</item>
+    </string-array>
+    <integer-array name="friend_photo_album_photo">
+        <item>@drawable/feed_photo_4</item>
+        <item>@drawable/feed_photo_2</item>
+        <item>@drawable/feed_photo_6</item>
+        <item>@drawable/feed_photo_7</item>
+        <item>@drawable/feed_photo_5</item>
+    </integer-array>
+
+    <string-array name="random_date">
+        <item>09:45</item>
+        <item>16:55</item>
+        <item>Yesterday, 23:10</item>
+        <item>02 Nov 15, 22:30</item>
+        <item>10 Sep 15, 06:15</item>
+        <item>11 Sep 15, 07.00</item>
+        <item>07:23</item>
+        <item>Just Now</item>
+        <item>30 Oct 2015, 16:43</item>
+        <item>21 Aug 2015, 20:35</item>
+    </string-array>
+
+    <!--chat data-->
+    <string-array name="message_snippet">
+        <item>Hi, Good morning</item>
+        <item>There s a chance I can make it.</item>
+        <item>Wish I could come, but Im out of town this weekend</item>
+        <item>Do you have any recomendation?</item>
+        <item>She had probably only just gpt up and had not even begun to get dressed</item>
+        <item>Can we make some appointment</item>
+        <item>Ok. We ll be there</item>
+        <item>How about our work last week.</item>
+        <item>Whatever your age</item>
+        <item>Headlines and top stories from business</item>
+    </string-array>
+    <string-array name="message_details_content">
+        <item>Suspendisse sit amet fermentum est</item>
+        <item>Suspendisse fermentum !</item>
+        <item>hendrerit libero et, ullamcorper ?</item>
+    </string-array>
+
+    <string-array name="message_details_date">
+        <item>09:45</item>
+        <item>09:55</item>
+        <item>12:10</item>
+    </string-array>
+
+    <string-array name="message_date">
+        <item>09:45</item>
+        <item>16:55</item>
+        <item>Yesterday, 23:10</item>
+        <item>11 Nov 2015, 16:43</item>
+        <item>11 Nov 2015, 20:11</item>
+        <item>10 Nov 2015, 12:25</item>
+        <item>08 Nov 2015, 01:45</item>
+        <item>04 Nov 2015, 22:30</item>
+        <item>04 Nov 2015, 05:22</item>
+        <item>01 Nov 2015, 04:59</item>
+    </string-array>
+
+
+    <!-- notif data -->
+    <string-array name="notif_text">
+        <item>like your photo</item>
+        <item>commented on your photo</item>
+        <item>mention you in a comment</item>
+        <item>share your photo</item>
+        <item><![CDATA[posted a photo in group <b>Collage</b>]]></item>
+
+        <item>like your photo</item>
+        <item>like your post</item>
+        <item>commented on your post</item>
+        <item>like your photo</item>
+        <item>like your post</item>
+
+        <item><![CDATA[posted a photo in group <b>Hangout Friends</b>]]></item>
+        <item><![CDATA[posted in group <b>Cat Lovers</b>]]></item>
+        <item>like your photo</item>
+        <item>mention you in a comment</item>
+        <item>share your post</item>
+    </string-array>
+
+    <string-array name="notif_date">
+        <item>09:45</item>
+        <item>16:55</item>
+        <item>20:26</item>
+        <item>24:10</item>
+        <item>Yesterday, 23:10</item>
+
+        <item>Yesterday, 11:43</item>
+        <item>Yesterday, 15:22</item>
+        <item>Yesterday, 23:10</item>
+        <item>11 Nov 2015, 16:43</item>
+        <item>11 Nov 2015, 20:11</item>
+
+        <item>10 Nov 2015, 12:25</item>
+        <item>08 Nov 2015, 01:45</item>
+        <item>04 Nov 2015, 22:30</item>
+        <item>04 Nov 2015, 05:22</item>
+        <item>01 Nov 2015, 04:59</item>
+    </string-array>
+    <string name="title_activity_activity_login">Login</string>
+
+</resources>

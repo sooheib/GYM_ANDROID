@@ -7,6 +7,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,13 +26,13 @@ public class ScheduleOwnDownloader extends AsyncTask<Void,Void,String> {
 
     Context c;
     String urlAddress;
-    ListView lv;
+    SwipeMenuListView lv;
     GridView lvv;
 
     ProgressDialog pd;
 
 
-    public ScheduleOwnDownloader(Context c, String urlAddress, ListView lv) {
+    public ScheduleOwnDownloader(Context c, String urlAddress, SwipeMenuListView lv) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;

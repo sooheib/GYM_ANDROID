@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.activity.DetailScheduleActivity;
+import selmibenromdhane.sparta_v1.activity.DetailScheduleActivity1;
 import selmibenromdhane.sparta_v1.adapter.ScheduleAdapter;
 import selmibenromdhane.sparta_v1.adapter.SessionAdapter;
 import selmibenromdhane.sparta_v1.manager.Session;
@@ -34,8 +33,9 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
     String jsonData;
     ListView lv;
     GridView lvv;
+    public static String scheduleday1;
 
-
+    public static String nameCourse="";
     public static String COURSE_EXTRA="course_code";
     public static String COURSE_COVER="course_cover";
     public static String COURSE_DESC="course_desc";
@@ -53,9 +53,6 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
     public static  String MAX_CAPACITY="max_capacity";
 
 
-
-
-
     SwipeRefreshLayout mSwipeRefreshLayout;
 
 
@@ -65,6 +62,10 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
     ProgressDialog pd;
     ArrayList<Session> schedules=new ArrayList<>();
+
+    public ScheduleParser() {
+
+    }
 
     public ScheduleParser(Context c, String jsonData, ListView lv) {
         this.c = c;
@@ -117,9 +118,8 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                     Session item = (Session) adapter.getItem(position);
 
 
-                    Intent intent=new Intent(c, DetailScheduleActivity.class);
+                    Intent intent=new Intent(c, DetailScheduleActivity1.class);
                     // intent.putExtra("item",parent.);
-
 
                     intent.putExtra(SCHEDULE_ID, item.getSchedule_i());
                     intent.putExtra(SCHEDULE_DATE, item.getDay());
@@ -138,12 +138,9 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
                 }
             });
         }
+
     }
 
-    private void refreshContent() {
-        final SessionAdapter adapter=new SessionAdapter(c,schedules);
-        lv.setAdapter(adapter);
-    }
 
     private int parseData()
     {
@@ -170,15 +167,19 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                 String scheduleday=jo.getString("1");
                 System.out.println(scheduleday);
-
+                scheduleday1=scheduleday;
 
                 //intent.putExtra(SCHEDULE_HOUR, item.getStartTime());
                 String hour=jo.getString("2");
                 System.out.println(hour);
 
                 //intent.putExtra(COURSE_EXTRA, item.getCourse());
+                //
+
                 String coursename=jo.getString("3");
                 System.out.println(coursename);
+
+                nameCourse=coursename;
 
                 //intent.putExtra(COURSE_DESC, item.getCourse_desc());
                 String coursdesc=jo.getString("4");
@@ -218,6 +219,9 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                 String countMumber=jo.getString("10");
                 System.out.println("countMumber"+countMumber);
+
+
+//
 
 
 

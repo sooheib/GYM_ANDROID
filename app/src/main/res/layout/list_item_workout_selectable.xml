@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/workoutCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp">
+
+    <RelativeLayout
+        android:id="@+id/workout_item_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/tvWorkoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:paddingTop="24dp"
+            android:text="Workout Name"
+            android:textColor="@color/primary_text"
+            android:textSize="24sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/tvWorkoutSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvWorkoutName"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp"
+            android:text="Fat loss , Chest"
+            android:textColor="@color/secondary_text"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/llWorkoutExercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvWorkoutSubtitle"
+            android:orientation="vertical"
+            android:paddingBottom="24dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

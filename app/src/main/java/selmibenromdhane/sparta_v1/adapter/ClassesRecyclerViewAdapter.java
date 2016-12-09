@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.DetailsClassesActivity;
+import selmibenromdhane.sparta_v1.activity.DetailsClassesActivity1;
 import selmibenromdhane.sparta_v1.manager.Course;
 import selmibenromdhane.sparta_v1.utils.PicassoClient;
 
@@ -63,8 +64,7 @@ public class ClassesRecyclerViewAdapter extends RecyclerView.Adapter<ClassesRecy
 
     private void openDetailActivity(String name,String desc,String imageUrl)
     {
-        Intent i=new Intent(context, DetailsClassesActivity.class);
-
+        Intent i=new Intent(context, DetailsClassesActivity1.class);
         i.putExtra(COURSE_EXTRA,name);
         i.putExtra(DESCRIPTION_EXTRA,desc);
         i.putExtra(IMAGE_EXTRA,imageUrl);

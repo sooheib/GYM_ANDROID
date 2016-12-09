@@ -7,6 +7,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import selmibenromdhane.sparta_v1.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public class AppController extends Application {
 
 	public static final String TAG = AppController.class.getSimpleName();
@@ -19,6 +22,7 @@ public class AppController extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
+
 	}
 
 	public static synchronized AppController getInstance() {

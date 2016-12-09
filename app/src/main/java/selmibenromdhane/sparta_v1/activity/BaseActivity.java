@@ -118,7 +118,7 @@ public class BaseActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Setting Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.exercise:
-                        Intent intent2= new Intent(BaseActivity.this, ExercisesActivity.class);
+                        Intent intent2= new Intent(BaseActivity.this, ExerciseListActivity.class);
                         startActivity(intent2);
                         finish();
                         Toast.makeText(getApplicationContext(),"Exercises Selected", Toast.LENGTH_SHORT).show();
@@ -129,6 +129,21 @@ public class BaseActivity extends AppCompatActivity {
                         finish();
                         Toast.makeText(getApplicationContext(),"Profile Selected", Toast.LENGTH_SHORT).show();
                         return true;
+
+                    case R.id.nav_workouts:
+                        Intent intentw = new Intent(BaseActivity.this, WorkoutsActivity.class);
+                        startActivity(intentw);
+                        finish();
+                        Toast.makeText(getApplicationContext(),"Workout Selected", Toast.LENGTH_SHORT).show();
+                        return true;
+
+                    case R.id.routine:
+                        Intent intentr = new Intent(BaseActivity.this, RoutinesActivity.class);
+                        startActivity(intentr);
+                        finish();
+                        Toast.makeText(getApplicationContext(),"Workout Selected", Toast.LENGTH_SHORT).show();
+                        return true;
+
                     case R.id.signout:
                         logoutUser();
                         return true;

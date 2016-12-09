@@ -36,4 +36,30 @@
     <color name="purple">#7c57e4</color>
     <color name="pink">#ff4284</color>
     <color name="orange">#ff8c6a</color>
+
+    <color name="grey_hard">#96989A</color>
+    <color name="grey_medium">#BDBFC1</color>
+    <color name="grey_soft">#F5F5F5</color>
+
+    <color name="grey_bg">#E6E6E6</color>
+    <color name="grey_text">#222D31</color>
+    <color name="tab_indicator_color">#FFFFFF</color>
+    <color name="me_chat_bg">#FFE0B2</color>
+
+    <color name="darkOverlay">#80000000</color>
+    <color name="darkOverlaySoft">#40000000</color>
+    <color name="whiteOverlay">#40FFFFFF</color>
+
+
+    <color name="primary">#FF9800</color>
+    <color name="primary_dark">#F57C00</color>
+    <color name="primary_light">#FFE0B2</color>
+    <color name="accent">#4CAF50</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#212121</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="black">#f9f6f6</color>
+
+
 </resources>

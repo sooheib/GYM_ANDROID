@@ -28,4 +28,28 @@
     <dimen name="inbox_vertical_margin">8dp</dimen>
     <dimen name="message_vertical_padding">8dp</dimen>
     <dimen name="user_grid_spacing">8dp</dimen>
+
+
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_medium">4dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+
+    <dimen name="elevation_low">9dp</dimen>
+    <dimen name="elevation_high">12dp</dimen>
+    <dimen name="status_bar_height">25dp</dimen>
+
+    <dimen name="tab_indicator_height">4dp</dimen>
+
+    <dimen name="recycler_item_size">192dp</dimen>
+
+
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <dimen name="profile_image_size">120dp</dimen>
 </resources>

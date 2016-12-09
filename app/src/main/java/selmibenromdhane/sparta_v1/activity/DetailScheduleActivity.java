@@ -69,7 +69,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
 
     private static final String TAG1 = DetailScheduleActivity.class.getSimpleName();
 
-
     Context context;
     String description="";
     String course = "";
@@ -254,10 +253,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
     //
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -333,7 +328,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 
     public void addReserv(final String userID,final String scheduleID ,String url)
     {

@@ -2,6 +2,7 @@ package selmibenromdhane.sparta_v1.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.BaseActivity;
 import selmibenromdhane.sparta_v1.manager.Schedule;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by sooheib on 11/8/16.
@@ -69,9 +71,23 @@ public class ScheduleAdapter extends BaseActivity implements ListAdapter {
             convertView=inflater.inflate(R.layout.one_article,parent,false);
         }
 
+
+
+
+
+        // txt.setTypeface(font);
+        Typeface myTypeface=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Medium.ttf");
         TextView coursetxt= (TextView) convertView.findViewById(R.id.courseSchedule);
+        coursetxt.setTypeface(myTypeface);
+        Typeface myTypeface1=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
+
         TextView trainersetxt= (TextView) convertView.findViewById(R.id.trainerSchedule);
+        trainersetxt.setTypeface(myTypeface1);
         TextView hourtext= (TextView) convertView.findViewById(R.id.hourSchedule);
+        Typeface myTypeface2=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
+
+        hourtext.setTypeface(myTypeface2);
+
 
 
         //ImageView img= (ImageView) convertView.findViewById(R.id.image);

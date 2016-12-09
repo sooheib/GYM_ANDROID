@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/concentration_curls1"
+        android:padding="2dp" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/concentration_curls2"
+
+        android:layout_toRightOf="@id/image1"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/tvExerciseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textColor="@color/grey_hard"
+        android:layout_toRightOf="@id/image2"
+        android:text="Exercise Title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

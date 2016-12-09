@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- SELECTED TAB STATE -->
+    <item android:state_pressed="false" android:state_selected="true">
+        <layer-list>
+            <!-- Bottom indicator color for the UNSELECTED tab state -->
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="270"
+                        android:centerColor="#FFFFFF"
+                        android:startColor="#FFFFFF"
+                        android:endColor="#66000000"
+                        android:type="linear" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+
+    <!-- PRESS TAB STATE -->
+    <item android:state_pressed="true" android:state_selected="false">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="#CCFFFFFF" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- UNSELECTED TAB STATE -->
+    <item android:state_pressed="false" android:state_selected="false">
+        <layer-list>
+            <item>
+                <shape>
+
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

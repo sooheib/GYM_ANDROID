@@ -1,11 +1,19 @@
 package selmibenromdhane.sparta_v1.fragment;
 
+import android.content.pm.ApplicationInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +46,7 @@ public class ScheduleOwnFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_scheduleown, container, false);
 
-        ListView classListView = (ListView) rootView.findViewById(R.id.list2);
+        final SwipeMenuListView classListView = (SwipeMenuListView) rootView.findViewById(R.id.list2);
         imgList = new ArrayList<Article>();
 
 
@@ -74,6 +82,34 @@ public class ScheduleOwnFragment extends Fragment {
 
         new ScheduleOwnDownloader(getActivity(), AppConfig.URL_OWNSCHEDULE,classListView).execute();
 
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+
+            @Override
+            public void create(SwipeMenu menu) {
+
+                SwipeMenuItem deleteItem = new SwipeMenuItem(getActivity().getApplicationContext());
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
+                // set item width
+                //deleteItem.setWidth(dp2px(90));
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_delete_black);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+        classListView.setMenuCreator(creator);
+        classListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+
+                //ApplicationInfo    item = classListView.get(position);
+
+                return false;
+            }
+        });
+        classListView.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
 
         return rootView;
 

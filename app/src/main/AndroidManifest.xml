@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-
-
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
@@ -39,8 +37,86 @@
         <activity android:name=".activity.DetailScheduleActivity" />
         <activity android:name=".activity.DetailsClassesActivity" />
         <activity android:name=".activity.ClassesActivity" />
-        <activity android:name=".activity.EventsActivity"></activity>
+        <activity android:name=".activity.EventsActivity" />
         <activity android:name=".activity.TrainersActivity" />
+        <activity android:name=".activity.DetailScheduleActivity1" />
+        <activity android:name=".activity.DetailsClassesActivity1"></activity>
+
+
+        <activity
+            android:name=".activity.OverviewActivity"
+            android:label="@string/title_activity_overview"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".activity.ExerciseListActivity"
+            android:label="@string/title_activity_exercise_list"
+            android:parentActivityName=".activity.OverviewActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.OverviewActivity" />
+        </activity>
+        <activity
+            android:name=".activity.WorkoutsActivity"
+            android:label="@string/title_activity_workouts"
+            android:parentActivityName=".activity.OverviewActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.OverviewActivity" />
+        </activity>
+        <activity
+            android:name=".activity.RoutinesActivity"
+            android:label="@string/title_activity_routines"
+            android:parentActivityName=".activity.OverviewActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.OverviewActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ExerciseDetailsActivity"
+            android:label="@string/title_activity_exercise_details"
+            android:parentActivityName=".activity.ExerciseListActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ExerciseListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditWorkoutActivity"
+            android:label="@string/title_activity_edit_workout"
+            android:parentActivityName=".activity.WorkoutsActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.WorkoutsActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditSetsActivity"
+            android:label="@string/title_activity_sets"
+            android:parentActivityName=".activity.EditWorkoutActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.EditWorkoutActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditRoutineActivity"
+            android:label="@string/title_activity_edit_routine"
+            android:parentActivityName=".activity.RoutinesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.RoutinesActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:parentActivityName=".activity.OverviewActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.OverviewActivity" />
+        </activity>
 
     </application>
 

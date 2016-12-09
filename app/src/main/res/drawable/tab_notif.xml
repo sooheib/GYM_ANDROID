@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- SELECTED TAB STATE -->
+    <item android:state_selected="true" android:state_pressed="false">
+        <layer-list>
+            <item android:bottom="4dp">
+                <bitmap android:src="@drawable/ic_tab_notification_dark"
+                    android:tint="@android:color/white"/>
+            </item>
+        </layer-list>
+    </item>
+    <!-- UNSELECTED TAB STATE -->
+    <item android:state_selected="false" android:state_pressed="false">
+        <layer-list>
+            <item android:bottom="4dp">
+                <bitmap android:src="@drawable/ic_tab_notification_dark"
+                    android:tint="@color/darkOverlaySoft"/>
+            </item>
+        </layer-list>
+    </item>
+</selector>

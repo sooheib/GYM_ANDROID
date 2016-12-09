@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +34,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 
     Context c;
     String jsonData;
-    ListView lv;
+    SwipeMenuListView lv;
 
     public static String CLIENT_ID="client_id";
     public static String COURSE_EXTRA="course_code";
@@ -58,7 +60,7 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
 
 
 
-    public ScheduleOwnParser(Context c, String jsonData, ListView lv) {
+    public ScheduleOwnParser(Context c, String jsonData, SwipeMenuListView lv) {
         this.c = c;
         this.jsonData = jsonData;
         this.lv = lv;
@@ -106,25 +108,26 @@ public class ScheduleOwnParser extends AsyncTask<Void,Void,Integer> {
                     System.out.println("ssssssssssss");
                     Toast.makeText(c,"SSSS",Toast.LENGTH_LONG).show();
 
-                    Session item = (Session) adapter.getItem(position);
+                    lv.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
 
+                        @Override
+                        public void onSwipeStart(int position) {
+                            // swipe start
+                            System.out.println("go");
 
-                    Intent intent=new Intent(c, DetailScheduleActivity.class);
-                    // intent.putExtra("item",parent.);
+                        }
 
+                        @Override
+                        public void onSwipeEnd(int position) {
+//                            delete(item);
+//                            lv.remove
+//                            adapter.notifyDataSetChanged();
+//                            // swipe
+                            schedules.remove(position);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
 
-                    intent.putExtra(SCHEDULE_ID, item.getSchedule_i());
-                    intent.putExtra(SCHEDULE_DATE, item.getDay());
-                    intent.putExtra(COURSE_EXTRA, item.getCourse());
-                    intent.putExtra(TRAINER_EXTRA, item.getTrainer());
-                    intent.putExtra(SCHEDULE_HOUR, item.getStartTime());
-                    intent.putExtra(COURSE_CAPACITY, item.getCourse_maxC());//int
-                    intent.putExtra(COURSE_COVER, item.getCourse_cover());
-                    intent.putExtra(COURSE_DESC, item.getCourse_desc());
-                    intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
-                    intent.putExtra(ROOM_NUMBER, item.getRoom_name());
-
-                    c.startActivity(intent);
 
                 }
             });

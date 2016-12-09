@@ -20,7 +20,6 @@
 			android:layout_centerVertical="true"
 			android:paddingLeft="@dimen/activity_horizontal_margin"
 			android:paddingRight="@dimen/activity_horizontal_margin"
-			android:src="@drawable/ic_send_black"
 			android:contentDescription="@string/content_desc_message_icon" />
 
 	<LinearLayout
@@ -32,27 +31,30 @@
 		android:paddingLeft="@dimen/activity_horizontal_margin"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		>
-	<TextView android:id="@+id/hourSchedule"
+	<selmibenromdhane.sparta_v1.adapter.MyCusTV
+		android:id="@+id/hourSchedule"
 		android:layout_width="80dip"
 		android:layout_height="70dip"
 		android:layout_gravity="center_vertical"
 		android:textColor="@color/white"
 		android:focusable="false"
 		android:clickable="false"
+		android:text="ssssssss"
 		android:textSize="22sp"
 		android:textStyle="bold"
 		android:layout_marginTop="5dp"
-		/>
+
+			/>
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
 
-
 		>
 
-		<TextView android:id="@+id/courseSchedule"
+		<selmibenromdhane.sparta_v1.adapter.MyCusTV android:id="@+id/courseSchedule"
+
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textSize="20sp"
@@ -60,7 +62,7 @@
 			android:textColor="@color/white"
 			/>
 
-		<TextView android:id="@+id/trainerSchedule"
+		<selmibenromdhane.sparta_v1.adapter.MyCusTV android:id="@+id/trainerSchedule"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textSize="20sp"
