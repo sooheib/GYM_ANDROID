@@ -87,14 +87,12 @@ public class LoginActivity extends Activity {
             System.out.println("******userId******/  " +sh.getString("userId","99"));
 
 
-
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             System.out.println("***********************************");
             startActivity(intent);
             finish();
         }
-
 
 
         // Login button Click Event
@@ -224,6 +222,8 @@ public class LoginActivity extends Activity {
 
                     return params;
                 }
+
+
 
             };
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <menu></menu>
     <group
         android:checkableBehavior="single" android:id="@+id/grp1"
@@ -29,7 +30,6 @@
             android:checked="false"
             android:icon="@drawable/event"
             android:title="@string/navigation_item_4" />
-
         <item
             android:id="@+id/exercise"
             android:checked="false"
@@ -46,6 +46,17 @@
             android:checked="false"
             android:icon="@mipmap/ic_workflow"
             android:title="Routine" />
+
+        <item android:id="@+id/menu_home"
+            android:title="@string/action_main"
+            android:icon="@drawable/ic_directions_walk_65black_30dp"
+            android:orderInCategory="100"
+            app:showAsAction="never" />
+        <item android:id="@+id/menu_training"
+            android:title="@string/action_training"
+            android:icon="@drawable/ic_directions_run"
+            android:orderInCategory="100"
+            app:showAsAction="never" />
 
 
     </group>

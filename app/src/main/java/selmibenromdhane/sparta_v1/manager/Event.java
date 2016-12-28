@@ -6,29 +6,36 @@ package selmibenromdhane.sparta_v1.manager;
 
 public class Event {
 
-    public String event_day;
-    public String event_duration;
+    public String event_id;
+    public String event_startDate;
+    public String event_endDate;
     public String event_name;
     public String event_cover;
     public String event_location;
+    public String event_description;
+    public int event_maxCapacity;
+    public int event_countReserved;
+
+
+
 
     public Event() {
     }
 
-    public String getEvent_day() {
-        return event_day;
+    public String getEvent_startDate() {
+        return event_startDate;
     }
 
-    public void setEvent_day(String event_day) {
-        this.event_day = event_day;
+    public void setEvent_startDate(String event_startDate) {
+        this.event_startDate = event_startDate;
     }
 
-    public String getEvent_duration() {
-        return event_duration;
+    public String getEvent_endDate() {
+        return event_endDate;
     }
 
-    public void setEvent_duration(String event_duration) {
-        this.event_duration = event_duration;
+    public void setEvent_endDate(String event_endDate) {
+        this.event_endDate = event_endDate;
     }
 
     public String getEvent_name() {
@@ -55,5 +62,35 @@ public class Event {
         this.event_location = event_location;
     }
 
+    public int getEvent_maxCapacity() {
+        return event_maxCapacity;
+    }
 
+    public void setEvent_maxCapacity(int event_maxCapacity) {
+        this.event_maxCapacity = event_maxCapacity;
+    }
+
+    public String getEvent_description() {
+        return event_description;
+    }
+
+    public void setEvent_description(String event_description) {
+        this.event_description = event_description;
+    }
+
+    public int getEvent_countReserved() {
+        return event_countReserved;
+    }
+
+    public void setEvent_countReserved(int event_countReserved) {
+        this.event_countReserved = event_countReserved;
+    }
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
+        this.event_id = event_id;
+    }
 }

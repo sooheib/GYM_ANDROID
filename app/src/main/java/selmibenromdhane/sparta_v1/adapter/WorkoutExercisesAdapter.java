@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Model.Exercise;
-import selmibenromdhane.sparta_v1.Model.Set;
+import selmibenromdhane.sparta_v1.manager.Exercise;
+import selmibenromdhane.sparta_v1.manager.Set;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.EditSetsActivity;
 import selmibenromdhane.sparta_v1.activity.EditWorkoutActivity;

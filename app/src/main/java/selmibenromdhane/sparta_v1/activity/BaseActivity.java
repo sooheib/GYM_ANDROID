@@ -1,9 +1,16 @@
 package selmibenromdhane.sparta_v1.activity;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import selmibenromdhane.sparta_v1.R;
@@ -22,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private SessionManager session;
-
+    ImageView imageView;
 
 
     private SQLiteUserHandler db;
@@ -37,11 +45,25 @@ public class BaseActivity extends AppCompatActivity {
     {
         DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
+
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
         super.setContentView(fullView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(), R.drawable.background9, opt);
+        int height = opt.outHeight;
+        int width = opt.outWidth;
+        String imageType = opt.outMimeType;
+
+
+
+        Bitmap bitmap1=decodeSampledBitmapFromResource(getResources(),R.drawable.spartalogo, 100, 100);
+
+
+        Drawable drawable=new BitmapDrawable(getResources(),bitmap1);
 
 
         // SqLite database handler
@@ -58,8 +80,14 @@ public class BaseActivity extends AppCompatActivity {
 
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
+//        View headerView= navigationView.inflateHeaderView(R.layout.header);
 
-        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+       // imageView= (ImageView) headerView.findViewById(R.id.profile_image);
+
+       // imageView.setImageDrawable(drawable);
+
+
+                //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             // This method will trigger on item Click of navigation menu
@@ -103,7 +131,7 @@ public class BaseActivity extends AppCompatActivity {
                         return true;
                     case R.id.trainers:
                         Toast.makeText(getApplicationContext(),"Trainers Selected", Toast.LENGTH_SHORT).show();
-                        Intent intent5 = new Intent(BaseActivity.this,TrainersActivity.class);
+                        Intent intent5 = new Intent(BaseActivity.this,TrainerActivity1.class);
                         startActivity(intent5);
                         finish();
                         return true;
@@ -144,6 +172,26 @@ public class BaseActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Workout Selected", Toast.LENGTH_SHORT).show();
                         return true;
 
+                    case R.id.menu_home:
+                        //Fragment fragment = new MainFragment();
+
+                        //FragmentManager fragmentManager = getSupportFragmentManager();
+                        //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+                        Intent intentpedo1 = new Intent(BaseActivity.this, MainActivityPedo.class);
+                        intentpedo1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intentpedo1);
+                        finish();
+
+                        return true;
+                    case R.id.menu_training:
+                     Intent   intentpedo2 = new Intent(BaseActivity.this, TrainingOverviewActivity.class);
+                        startActivity(intentpedo2);
+                        finish();
+
+                        // createBackStack(intent);
+
+                        return true;
+
                     case R.id.signout:
                         logoutUser();
                         return true;
@@ -155,7 +203,6 @@ public class BaseActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 //        if (useToolbar())
 //        {
@@ -226,12 +273,64 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    private void createBackStack(Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            TaskStackBuilder builder = TaskStackBuilder.create(this);
+            builder.addNextIntentWithParentStack(intent);
+            builder.startActivities();
+        } else {
+            startActivity(intent);
+            finish();
+        }
+    }
+
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
 //        return true;
 //    }
+
+
+    public static int calculateMyInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of bitmap
+        final int oriHeight = options.outHeight;
+        final  int oriWidth=options.outWidth;
+        int inSampleSize = 1;
+
+        if (oriHeight > reqHeight || oriWidth > reqWidth) {
+
+            final int halfHeight = oriHeight / 2;
+            final int halfWidth = oriWidth / 2;
+
+            // Calculate the largest inSampleSize value which is power of 2 and keeps both width and height larger than the requested width and height.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth)
+            {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources resource, int resourceId, int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(resource, resourceId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateMyInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(resource, resourceId, options);
+    }
+
+
 
 
 }

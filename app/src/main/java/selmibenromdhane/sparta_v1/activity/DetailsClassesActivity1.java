@@ -23,6 +23,9 @@ import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.fragment.ClassAboutFragment;
+import selmibenromdhane.sparta_v1.fragment.ClassTrainerFragement;
+import selmibenromdhane.sparta_v1.fragment.ScheduleClassListFragment;
+import selmibenromdhane.sparta_v1.manager.Schedule;
 import selmibenromdhane.sparta_v1.parser.ClassesCardParser;
 
 public class DetailsClassesActivity1 extends AppCompatActivity {
@@ -30,10 +33,13 @@ public class DetailsClassesActivity1 extends AppCompatActivity {
 
     String cover="";
     String name="";
+    public static String course_id;
     public static String description;
 
     private ViewPager mViewPager;
     private ClassAboutFragment frag_friendAbout;
+    private ScheduleClassListFragment frag_friendActivity;
+    private ClassTrainerFragement frag_trainerfragment;
 
     private ActionBar actionBar;
 
@@ -60,12 +66,12 @@ public class DetailsClassesActivity1 extends AppCompatActivity {
             cover=intent.getStringExtra(ClassesCardParser.IMAGE_EXTRA);
             name=intent.getStringExtra(ClassesCardParser.COURSE_EXTRA);
             description=intent.getStringExtra(ClassesCardParser.DESCRIPTION_EXTRA);
+            course_id=intent.getStringExtra(ClassesCardParser.COURSE_ID);
 
             ed=sh.edit();
             ed.putString("description",description);
+            ed.putString("course_id",course_id);
             System.out.println(description);
-
-
             ed.commit();
 
 
@@ -105,11 +111,13 @@ public class DetailsClassesActivity1 extends AppCompatActivity {
         DetailsClassesActivity1.MyPagerAdapter adapter = new DetailsClassesActivity1.MyPagerAdapter(getSupportFragmentManager());
 
         if( frag_friendAbout == null ){ frag_friendAbout = new ClassAboutFragment(); }
-        //  if( frag_friendActivity == null ){ frag_friendActivity = new FriendActivitiesFragment(); }
-        // if( frag_friendPhotos == null ){ frag_friendPhotos = new FriendPhotosFragment(); }
+          if( frag_friendActivity == null ){ frag_friendActivity = new ScheduleClassListFragment(); }
+         if( frag_trainerfragment == null ){ frag_trainerfragment = new ClassTrainerFragement(); }
 
         adapter.addFragment(frag_friendAbout, "ABOUT");
-        //adapter.addFragment(frag_friendActivity, "ACTIVITIES");
+        adapter.addFragment(frag_trainerfragment, "Trainer");
+        adapter.addFragment(frag_friendActivity, "SCHEDULE");
+
         //adapter.addFragment(frag_friendPhotos, "PHOTOS");
 
         mViewPager.setAdapter(adapter);

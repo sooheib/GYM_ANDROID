@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import selmibenromdhane.sparta_v1.Data.Database;
-import selmibenromdhane.sparta_v1.Enumeration.EnumExerciseTypes;
-import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
-import selmibenromdhane.sparta_v1.Enumeration.EnumWeekDays;
-import selmibenromdhane.sparta_v1.Model.Routine;
-import selmibenromdhane.sparta_v1.Model.Workout;
+import selmibenromdhane.sparta_v1.helper.Database;
+import selmibenromdhane.sparta_v1.enumeration.EnumExerciseTypes;
+import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.enumeration.EnumWeekDays;
+import selmibenromdhane.sparta_v1.manager.Routine;
+import selmibenromdhane.sparta_v1.manager.Workout;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.fragment.FragmentRoutineDay;
 

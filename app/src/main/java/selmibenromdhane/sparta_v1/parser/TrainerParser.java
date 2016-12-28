@@ -118,13 +118,23 @@ public class TrainerParser  extends AsyncTask<Void,Void,Integer> {
             {
                 jo=ja.getJSONObject(i);
                 Trainer trainer=new Trainer();
+
+                String employee_id =jo.getString("0");
+                System.out.println(jo.getString("0"));
+
+                trainer.setEmployee_id(Integer.parseInt(employee_id));
+
+
                 trainer.setFirst_name(jo.getString("1"));
                 System.out.println(jo.getString("1"));
+
                 trainer.setLast_name(jo.getString("2"));
                 System.out.println(jo.getString("2"));
+
                 trainer.setPhoto("https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+jo.getString("6"));
                 System.out.println("https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+jo.getString("6"));
-
+//                trainer.setCourse_name(jo.getString("4"));
+//                System.out.println(jo.getString("4"));
                 // adding Billionaire to worldsBillionaires array
                 trainers.add(trainer);
             }

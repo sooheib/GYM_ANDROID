@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Model.Exercise;
-import selmibenromdhane.sparta_v1.Model.Workout;
+import selmibenromdhane.sparta_v1.manager.Exercise;
+import selmibenromdhane.sparta_v1.manager.Workout;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.EditRoutineActivity;
 import selmibenromdhane.sparta_v1.activity.EditWorkoutActivity;

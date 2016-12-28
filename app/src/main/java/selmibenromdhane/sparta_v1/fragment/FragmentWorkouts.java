@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Model.Workout;
+import selmibenromdhane.sparta_v1.manager.Workout;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.WorkoutsAdapter;
 import selmibenromdhane.sparta_v1.adapter.WorkoutsSelectableAdapter;

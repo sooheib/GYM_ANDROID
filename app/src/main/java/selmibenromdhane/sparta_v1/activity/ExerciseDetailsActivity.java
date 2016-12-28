@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
-import selmibenromdhane.sparta_v1.Model.Exercise;
+import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.manager.Exercise;
 import selmibenromdhane.sparta_v1.R;
 
 public class ExerciseDetailsActivity extends AppCompatActivity {

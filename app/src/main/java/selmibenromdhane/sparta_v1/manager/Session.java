@@ -26,6 +26,7 @@ public class Session {
     public String trainer_photo;
     public String room_name;
     public int countMumber;
+    public String startDate;
 
     public String getMaxCapacity() {
         return maxCapacity;
@@ -177,5 +178,11 @@ public class Session {
         this.endTime = endTime;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
 
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
 }

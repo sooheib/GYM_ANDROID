@@ -182,6 +182,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/bg_register"
@@ -213,9 +214,26 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/material_grey_600" />
 
+                <Button
+                    android:id="@+id/booking"
+                    android:layout_width="match_parent"
+                    android:text="BOOKING"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/bookingcancel"
+                    android:layout_width="match_parent"
+                    android:text="BOOKING Cancel"
+                    android:visibility="invisible"
+
+                    android:layout_height="match_parent" />
+
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+
 
     </LinearLayout>
 

@@ -7,9 +7,6 @@ import android.widget.TextView;
 
 import java.io.File;
 
-/**
- * @author Yalantis
- */
 public class FontTextView extends TextView {
 
     public FontTextView(Context context, AttributeSet attrs, int defStyle) {

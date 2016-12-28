@@ -15,26 +15,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import selmibenromdhane.sparta_v1.activity.DetailScheduleActivity1;
+import selmibenromdhane.sparta_v1.activity.HomeActivity;
 import selmibenromdhane.sparta_v1.adapter.ScheduleAdapter;
 import selmibenromdhane.sparta_v1.adapter.SessionAdapter;
+import selmibenromdhane.sparta_v1.fragment.ScheduleGymFragment;
 import selmibenromdhane.sparta_v1.manager.Session;
 
 /**
  * Created by sooheib on 11/8/16.
  */
 
-public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
-
+public class ScheduleParser extends AsyncTask<Void,Void,Integer> implements SwipeRefreshLayout.OnRefreshListener {
 
     Context c;
     String jsonData;
     ListView lv;
     GridView lvv;
     public static String scheduleday1;
-
     public static String nameCourse="";
     public static String COURSE_EXTRA="course_code";
     public static String COURSE_COVER="course_cover";
@@ -52,16 +55,24 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
     public static  String COUNTMEMBER="countMumber";
     public static  String MAX_CAPACITY="max_capacity";
 
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
+    SessionAdapter adapter;
 
 
-    private ScheduleAdapter adapter;
-
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ProgressDialog pd;
-    ArrayList<Session> schedules=new ArrayList<>();
+    ArrayList<Object> schedules=new ArrayList<>();
+
+    ScheduleGymFragment scheduleGymFragment=new ScheduleGymFragment();
+    String todayy;
+    String monthh;
+
+    Calendar calendar = Calendar.getInstance();
+
+    String currentday;
+    String selectedday="";
+
+
 
     public ScheduleParser() {
 
@@ -73,8 +84,12 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
         this.lv = lv;
     }
 
-
-
+    public ScheduleParser(Context c, String jsonData, ListView lv, SwipeRefreshLayout swipeRefreshLayout) {
+        this.c = c;
+        this.jsonData = jsonData;
+        this.lv = lv;
+        this.swipeRefreshLayout=swipeRefreshLayout;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -85,30 +100,36 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
         pd.setMessage("Parsing...Please wait");
         pd.show();
 
-
-
+        swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     protected Integer doInBackground(Void... params) {
+
         return this.parseData();
+
     }
 
     @Override
     protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
 
-        pd.dismiss();
+       pd.dismiss();
+        //swipeRefreshLayout.setRefreshing(true);
 
         if(result==0)
         {
             Toast.makeText(c,"Unable To Parse", Toast.LENGTH_SHORT).show();
         }else {
             //BIND DATA TO LISTVIEW
-            final SessionAdapter adapter=new SessionAdapter(c,schedules);
-            lv.setAdapter(adapter);
 
-            //   lvv.setAdapter(adapter);
+            swipeRefreshLayout.setOnRefreshListener(this);
+
+            adapter=new SessionAdapter(c,schedules);
+
+            lv.setAdapter(adapter);
+          //  adapter.notifyDataSetChanged();
+
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,9 +138,7 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
 
                     Session item = (Session) adapter.getItem(position);
 
-
                     Intent intent=new Intent(c, DetailScheduleActivity1.class);
-                    // intent.putExtra("item",parent.);
 
                     intent.putExtra(SCHEDULE_ID, item.getSchedule_i());
                     intent.putExtra(SCHEDULE_DATE, item.getDay());
@@ -139,111 +158,135 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
             });
         }
 
-    }
+        swipeRefreshLayout.setRefreshing(false);
 
+    }
 
     private int parseData()
     {
-        try
-        {
-            JSONArray ja=new JSONArray(jsonData);
-            JSONObject jo=null;
+//        swipeRefreshLayout.setRefreshing(false);
+
+        SimpleDateFormat sdftoday = new SimpleDateFormat("dd");
+        SimpleDateFormat sdfmonth = new SimpleDateFormat("MM");
+        SimpleDateFormat sdfyear = new SimpleDateFormat("yyyy");
+
+        currentday=sdfmonth.format(calendar.getTime())+"/"+sdftoday.format(calendar.getTime())+"/"+sdfyear.format(calendar.getTime());
+
+
+        selectedday=scheduleGymFragment.selecteddayGS;
+        System.out.println("bb"+selectedday);
+
+        if(!selectedday.equalsIgnoreCase("99")){
+            currentday=selectedday;
+        }
+
+
+
+
+        try {
+
+            JSONArray ja = new JSONArray(jsonData);
+            JSONObject jo = null;
 
             schedules.clear();
             Session schedule;
 
-            for(int i=0;i<ja.length();i++)
-            {
-                jo=ja.getJSONObject(i);
+            String schedule1="12/12/2222";
+            for (int i = 0; i < ja.length(); i++) {
+                jo = ja.getJSONObject(i);
 
-                int id=jo.getInt("0");
+                int id = jo.getInt("0");
 
 
-                // intent.putExtra(SCHEDULE_DATE, item.getDay());
-                //intent.putExtra(COURSE_EXTRA, item.getCourse());
+                System.out.println("************currentday" + currentday);
 
-                String schedule_id=jo.getString("0");
-                System.out.println(schedule_id);
-
-                String scheduleday=jo.getString("1");
+                String scheduleday = jo.getString("1");
                 System.out.println(scheduleday);
-                scheduleday1=scheduleday;
+                scheduleday1 = scheduleday;
 
-                //intent.putExtra(SCHEDULE_HOUR, item.getStartTime());
-                String hour=jo.getString("2");
-                System.out.println(hour);
+                String datee = jo.getString("12");
+                System.out.println("date" + datee);
 
-                //intent.putExtra(COURSE_EXTRA, item.getCourse());
-                //
+                        if(currentday.compareTo(scheduleday)==0)
+                    {
+                        String schedule_id = jo.getString("0");
+                        System.out.println(schedule_id);
 
-                String coursename=jo.getString("3");
-                System.out.println(coursename);
+                        //intent.putExtra(SCHEDULE_HOUR, item.getStartTime());
+                        String hour = jo.getString("2");
+                        System.out.println(hour);
 
-                nameCourse=coursename;
-
-                //intent.putExtra(COURSE_DESC, item.getCourse_desc());
-                String coursdesc=jo.getString("4");
-                System.out.println(coursdesc);
+                        //intent.putExtra(COURSE_EXTRA, item.getCourse());
 
 
-                // intent.putExtra(COURSE_COVER, item.getCourse_cover());
-                String coursecover=jo.getString("5");
+                        String coursename = jo.getString("3");
+                        System.out.println(coursename);
 
-                coursecover="https://spartaapp.azurewebsites.net/Backend/partials/user_images/"+coursecover;
+                        nameCourse = coursename;
 
-                System.out.println(coursecover);
-
-                //intent.putExtra(COURSE_CAPACITY, item.getCourse_maxC());//int
-                int coursecapacity=jo.getInt("6");
-                System.out.println("coursecapacity"+coursecapacity);
+                        //intent.putExtra(COURSE_DESC, item.getCourse_desc());
+                        String coursdesc = jo.getString("4");
+                        System.out.println(coursdesc);
 
 
+                        // intent.putExtra(COURSE_COVER, item.getCourse_cover());
+                        String coursecover = jo.getString("5");
 
-                //intent.putExtra(TRAINER_EXTRA, item.getTrainer());
-                String trainername=jo.getString("7");
+                        coursecover = "https://spartaapp.azurewebsites.net/Backend/partials/user_images/" + coursecover;
 
-                System.out.println(trainername);
+                        System.out.println(coursecover);
 
-                // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
-                String trainerphoto=jo.getString("8");
-                trainerphoto="https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/"+trainerphoto;
-
-                System.out.println(trainerphoto);
-
+                        //intent.putExtra(COURSE_CAPACITY, item.getCourse_maxC());//int
+                        String coursecapacity = jo.getString("6");
+                        System.out.println("coursecapacity" + coursecapacity);
 
 
+                        //intent.putExtra(TRAINER_EXTRA, item.getTrainer());
+                        String trainername = jo.getString("7");
 
-                //intent.putExtra(ROOM_NUMBER, item.getRoom_name());
-                String roomname=jo.getString("9");
-                System.out.println(roomname);
+                        System.out.println(trainername);
 
-                String countMumber=jo.getString("10");
-                System.out.println("countMumber"+countMumber);
+                        // intent.putExtra(TRAINER_PHOTO, item.getTrainer_photo());
+                        String trainerphoto = jo.getString("8");
+                        trainerphoto = "https://spartaapp.azurewebsites.net/Backend/partials/teacher_photos/" + trainerphoto;
+
+                        System.out.println(trainerphoto);
+
+                        //intent.putExtra(ROOM_NUMBER, item.getRoom_name());
+                        String roomname = jo.getString("9");
+                        System.out.println(roomname);
+
+                        String countMumber = jo.getString("10");
+                        System.out.println("countMumber" + countMumber);
 
 
-//
+                        schedule = new Session();
 
+                        schedule.setSchedule_i(schedule_id);
+                        schedule.setStartTime(hour);
+                        schedule.setCourse(coursename);
+                        schedule.setTrainer(trainername);
+                        schedule.setTrainer_photo(trainerphoto);
+                        schedule.setCourse_cover(coursecover);
+                        schedule.setCourse_desc(coursdesc);
+                        schedule.setDay(scheduleday);
+                        schedule.setRoom_name(roomname);
+                        schedule.setCountMumber(Integer.parseInt(countMumber));
+                        schedule.setCourse_maxC(Integer.parseInt(coursecapacity));
+                        schedule.setStartDate(datee);
 
+                        if(!schedule1.equalsIgnoreCase(scheduleday)){
+                            schedules.add(scheduleday);
 
+                            schedule1=scheduleday;
 
-                schedule=new Session();
+                        }
+                        schedules.add(schedule);
 
-                schedule.setSchedule_i(schedule_id);
-                schedule.setStartTime(hour);
+                        System.out.println("asasas" + schedules);
+                    }
 
-                schedule.setCourse(coursename);
-                schedule.setTrainer(trainername);
-                schedule.setTrainer_photo(trainerphoto);
-                schedule.setCourse_cover(coursecover);
-                schedule.setCourse_desc(coursdesc);
-                schedule.setDay(scheduleday);
-                schedule.setRoom_name(roomname);
-                schedule.setCountMumber(Integer.parseInt(countMumber));
-                schedule.setCourse_maxC(coursecapacity);
-
-                schedules.add(schedule);
-            }
-
+                }
             return 1;
 
 
@@ -251,7 +294,13 @@ public class ScheduleParser extends AsyncTask<Void,Void,Integer> {
             e.printStackTrace();
         }
 
+
         return 0;
     }
 
+    @Override
+    public void onRefresh() {
+        doInBackground();
+        onPostExecute(1);
+    }
 }

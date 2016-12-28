@@ -2,8 +2,18 @@ package selmibenromdhane.sparta_v1.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -12,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,27 +35,64 @@ import java.text.SimpleDateFormat;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.fragment.Pager;
+import selmibenromdhane.sparta_v1.parser.ScheduleParser;
 
-//Implementing the interface OnTabSelectedListener to our HomeActivity
-//This interface would help in swiping views
+import static android.R.attr.id;
+import static selmibenromdhane.sparta_v1.R.drawable.design_fab_background;
+import static selmibenromdhane.sparta_v1.R.drawable.fab_add;
+
 public class HomeActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,AdapterView.OnItemClickListener{
 
-    //This is our tablayout
+    //This is our tablayoutfsf
     private TabLayout tabLayout;
+
+    private static Context mContext;
 
     //This is our viewPager
     private ViewPager viewPager;
 
+    SharedPreferences sh;
+    SharedPreferences.Editor ed;
+
+
+    public static String selectedday;
+    public  String selectedday1;
+
 //Date format
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
+    public static final String SELECTED_DAY="DAY";
 
+
+    LinearLayout linearLayout;
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //Adding toolbar to the activity
+
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(), R.drawable.background9, opt);
+        int height = opt.outHeight;
+        int width = opt.outWidth;
+        String imageType = opt.outMimeType;
+
+
+        Bitmap bitmap1=decodeSampledBitmapFromResource(getResources(),R.drawable.background9, 642, 962);
+
+
+        Drawable drawable=new BitmapDrawable(getResources(),bitmap1);
+
+        linearLayout= (LinearLayout) findViewById(R.id.main_layout);
+
+        linearLayout.setBackground(drawable);
+
+
+
+
 
 
         //Initializing the tablayout
@@ -71,6 +119,27 @@ public class HomeActivity extends BaseActivity implements TabLayout.OnTabSelecte
         tabLayout.setOnTabSelectedListener(this);
        // tabLayout.setupWithViewPager(viewPager);
 
+
+        sh = getSharedPreferences("report",MODE_PRIVATE);
+
+
+        selectedday1=sh.getString("selected","99");
+        System.out.println("selectedday1"+selectedday1);
+
+
+        Intent intent = getIntent();
+        if (null != intent) {
+
+
+            selectedday=intent.getStringExtra(HomeActivity.SELECTED_DAY);
+
+        }
+
+
+        System.out.println("selectedday"+selectedday);
+        ed=sh.edit();
+        ed.putString("selected",selectedday);
+        ed.commit();
 
 
 
@@ -127,6 +196,9 @@ public class HomeActivity extends BaseActivity implements TabLayout.OnTabSelecte
     public static class SimpleCalendarDialogFragment extends AppCompatDialogFragment implements OnDateSelectedListener {
 
         private TextView textView;
+        public String month;
+        public String today;
+
 
         @NonNull
         @Override
@@ -148,11 +220,78 @@ public class HomeActivity extends BaseActivity implements TabLayout.OnTabSelecte
                     .create();
         }
 
+
+
+
         @Override
         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-            textView.setText(FORMATTER.format(date.getDate()));
+           // textView.setText(FORMATTER.format(date.getDate()));
+         //  textView.setText(date.getMonth()+" "+date.getDay());
+
+            SimpleDateFormat sdftoday = new SimpleDateFormat("dd");
+            SimpleDateFormat sdfmonth = new SimpleDateFormat("MM");
+
+            SimpleDateFormat sdfyear = new SimpleDateFormat("yyyy");
+
+
+
+            String today=sdftoday.format(date.getDate());
+            String month=sdfmonth.format(date.getDate());
+            String year=sdfyear.format(date.getDate());
+            String selectedday=month+"/"+today+"/"+year;
+            textView.setText(month+"/"+today+"/"+year);
+
+            Intent i = new Intent(getContext(), HomeActivity.class);
+            i.putExtra(SELECTED_DAY,selectedday);
+            getContext().startActivity(i);
+
+
+
+
         }
     }
+
+    public static int calculateMyInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of bitmap
+        final int oriHeight = options.outHeight;
+        final  int oriWidth=options.outWidth;
+        int inSampleSize = 1;
+
+        if (oriHeight > reqHeight || oriWidth > reqWidth) {
+
+            final int halfHeight = oriHeight / 2;
+            final int halfWidth = oriWidth / 2;
+
+            // Calculate the largest inSampleSize value which is power of 2 and keeps both width and height larger than the requested width and height.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth)
+            {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources resource, int resourceId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(resource, resourceId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateMyInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(resource, resourceId, options);
+    }
+
+
+
+
 
 
 

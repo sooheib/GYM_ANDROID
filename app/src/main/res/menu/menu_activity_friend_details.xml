@@ -5,6 +5,6 @@
         android:id="@+id/action_send_message"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_menu_new_message"
+        android:icon="@drawable/share"
         android:title="action call"/>
 </menu>

@@ -82,25 +82,34 @@ public class EventParser extends AsyncTask<Void,Void,Integer> {
             {
                 jo=ja.getJSONObject(i);
                 Event event = new Event();
-                event.setEvent_day(jo.getString("1"));
+
+                event.setEvent_id(jo.getString("0"));
+                System.out.println(jo.getString("0"));
+
+                event.setEvent_name(jo.getString("1"));
                 System.out.println(jo.getString("1"));
-                event.setEvent_day(jo.getString("2"));
+                event.setEvent_location(jo.getString("2"));
                 System.out.println(jo.getString("2"));
-                event.setEvent_name(jo.getString("3"));
+                event.setEvent_startDate(jo.getString("3"));
                 System.out.println(jo.getString("3"));
-                event.setEvent_cover("https://spartaapp.azurewebsites.net/Backend/partials/event_images/"
-                        +jo.getString("4"));
-                System.out.println("https://spartaapp.azurewebsites.net/Backend/partials/event_images/"
-                        +jo.getString("4"));
-
-                event.setEvent_location(jo.getString("5"));
+                event.setEvent_endDate(jo.getString("4"));
+                System.out.println(jo.getString("4"));
+                event.setEvent_description(jo.getString("5"));
                 System.out.println(jo.getString("5"));
-
+                event.setEvent_cover("https://spartaapp.azurewebsites.net/Backend/partials/event_images/"
+                        +jo.getString("6"));
+                System.out.println("https://spartaapp.azurewebsites.net/Backend/partials/event_images/"
+                        +jo.getString("6"));
+                String maxC=jo.getString("7");
+                event.setEvent_maxCapacity(Integer.parseInt(maxC));
+                System.out.println(jo.getInt("7"));
+                String countR=jo.getString("8");
+                event.setEvent_countReserved(Integer.parseInt(countR));
+                System.out.println(jo.getInt("8"));
                 events.add(event);
             }
 
             return 1;
-
 
         } catch (JSONException e) {
             e.printStackTrace();

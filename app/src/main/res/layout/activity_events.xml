@@ -39,7 +39,7 @@
         <ImageView
             android:id="@+id/details_image"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="280dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
@@ -78,11 +78,32 @@
             android:textColor="#eee"
             android:textSize="14sp" />
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="#fff" />
+
+        <Button
+            android:id="@+id/booking"
+            android:layout_width="match_parent"
+            android:text="BOOKING"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/cancelbooking"
+            android:layout_width="match_parent"
+            android:text="CANCEL BOOKING"
+            android:visibility="invisible"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <com.alexvasilkov.foldablelayout.UnfoldableView
         android:id="@+id/unfoldable_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </merge>

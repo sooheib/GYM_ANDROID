@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 import selmibenromdhane.sparta_v1.R;
 
-/**
- * Created by Admin on 04-06-2015.
- */
+
 public class ContentFragment extends Fragment {
 
     @Nullable

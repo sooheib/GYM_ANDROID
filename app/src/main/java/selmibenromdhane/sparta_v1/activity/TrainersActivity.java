@@ -8,9 +8,7 @@ import selmibenromdhane.sparta_v1.app.AppConfig;
 
 import selmibenromdhane.sparta_v1.parser.TrainerDownloader;
 
-/**
- * @author Yalantis
- */
+
 public class TrainersActivity extends BaseActivity{
 
 

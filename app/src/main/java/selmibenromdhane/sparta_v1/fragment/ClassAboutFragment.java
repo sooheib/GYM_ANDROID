@@ -17,7 +17,6 @@ import selmibenromdhane.sparta_v1.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
-
 public class ClassAboutFragment extends Fragment {
     SharedPreferences sh;
     SharedPreferences.Editor ed;

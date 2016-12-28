@@ -98,6 +98,8 @@ public class EventsAdapter extends ArrayAdapter<Event> implements View.OnClickLi
     public void onClick(View view) {
         Event item = (Event) view.getTag(R.id.list_item_image);
         if (view.getContext() instanceof EventsActivity) {
+
+            System.out.println("aaaaaaaa: "+view.getContext());
             ((EventsActivity) view.getContext()).openDetails(view, item);
         } else if (view.getContext() instanceof EventsActivity) {
             Toast.makeText(view.getContext(), item.getEvent_name(), Toast.LENGTH_SHORT).show();

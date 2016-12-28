@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Model.Routine;
+import selmibenromdhane.sparta_v1.manager.Routine;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.EditRoutineActivity;
 

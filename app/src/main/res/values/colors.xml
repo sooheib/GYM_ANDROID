@@ -5,6 +5,15 @@
     <color name="colorAccent">#FFB300</color>
     <color name="colorAccent1">#9EFFB300</color>
 
+    <color name="colorPrimaryLight">#658AF9</color>
+
+
+    <color name="gray">#21252a</color>
+    <color name="orange">#ff8c6a</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="blue">#ff14445a</color>
+
     <color name="colorBlack">#000000</color>
     <color name="PrimaryColor">#2196F3</color>
     <color name="PrimaryDarkColor">#1976D2</color>
@@ -17,7 +26,6 @@
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
-    <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
@@ -35,7 +43,6 @@
     <color name="green">#10b4a5</color>
     <color name="purple">#7c57e4</color>
     <color name="pink">#ff4284</color>
-    <color name="orange">#ff8c6a</color>
 
     <color name="grey_hard">#96989A</color>
     <color name="grey_medium">#BDBFC1</color>
@@ -59,7 +66,21 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
-    <color name="black">#f9f6f6</color>
 
+
+    <color name="darkgrey">#757575</color>
+    <!--<color name="colorPrimary">#024265</color>-->
+    <!--<color name="colorPrimaryDark">#024265</color>-->
+    <!--<color name="colorAccent">#0274B2</color>-->
+    <color name="transparent">#00000000</color>
+    <!--<color name="white">#ffffff</color>-->
+    <!--<color name="black">#000000</color>-->
+    <color name="lightblue">#0274B2</color>
+    <color name="middleblue">#8aa5ce</color>
+    <color name="darkblue">#024265</color>
+    <color name="middlegrey">#A8A8A8</color>
+    <color name="yellow">#f6d126</color>
+    <color name="red">#B71C1C</color>
+    <!--<color name="green">#388E3C</color>-->
 
 </resources>

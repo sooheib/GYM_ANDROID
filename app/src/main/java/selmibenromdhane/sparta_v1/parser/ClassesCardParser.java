@@ -27,12 +27,13 @@ public class ClassesCardParser extends AsyncTask<Void,Void,Integer> {
     public static String DESCRIPTION_EXTRA="course_desc";
     public static String COURSE_EXTRA="course_code";
     public static String IMAGE_EXTRA="course_cover";
+    public static String COURSE_ID="course_id";
+
 
 
 
     ProgressDialog pd;
     ArrayList<Course> spacecrafts=new ArrayList<>();
-
 
 
     public ClassesCardParser(Context c, String jsonData, RecyclerView rv) {
@@ -129,6 +130,8 @@ public class ClassesCardParser extends AsyncTask<Void,Void,Integer> {
                 course.setCourse_cover(imageUrl);
                 course.setCourse_desc(desc);
                 spacecrafts.add(course);
+
+                System.out.println(spacecrafts);
             }
 
             return 1;

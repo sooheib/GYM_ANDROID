@@ -4,17 +4,21 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ScheduleGymFragment" >
 
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-
-        <ListView
-            android:id="@+id/list1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/inbox_vertical_margin" />
-
+        <!-- place your view here -->
+    <ListView
+        android:id="@+id/list1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/inbox_vertical_margin" />
+</android.support.v4.widget.SwipeRefreshLayout>
 
 
 

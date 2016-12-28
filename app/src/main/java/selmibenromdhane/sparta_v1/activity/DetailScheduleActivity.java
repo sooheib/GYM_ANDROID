@@ -111,6 +111,8 @@ public class DetailScheduleActivity extends AppCompatActivity {
         tvschedule=(TextView)findViewById(R.id.schedule_id);
      //   seanceBDD=new SeanceBDD(this);
 
+
+
         tv6= (TextView) findViewById(R.id.day);
         db = new SQLiteUserHandler(getApplicationContext());
 
@@ -220,8 +222,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
         tv6.setText(day);
         tvschedule.setText(scheduleID);
         tvclient.setText(clientID);
-
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -345,6 +345,8 @@ public class DetailScheduleActivity extends AppCompatActivity {
                                 test=0;
                             }
                             else {
+
+
                                 Toast.makeText(getApplicationContext(),code, Toast.LENGTH_LONG).show();
                                 test=1;
 
@@ -377,7 +379,6 @@ public class DetailScheduleActivity extends AppCompatActivity {
 
     public void diseableFab(Boolean test) //desable FAB when booking added
     {        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
         if (test)
         {
             fab.setVisibility(FloatingActionButton.INVISIBLE);

@@ -3,7 +3,6 @@ package selmibenromdhane.sparta_v1.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,9 +11,9 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Data.Database;
-import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
-import selmibenromdhane.sparta_v1.Model.Exercise;
+import selmibenromdhane.sparta_v1.helper.Database;
+import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.manager.Exercise;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.ExerciseAdapter;
 import selmibenromdhane.sparta_v1.adapter.ExerciseSelectableAdapter;

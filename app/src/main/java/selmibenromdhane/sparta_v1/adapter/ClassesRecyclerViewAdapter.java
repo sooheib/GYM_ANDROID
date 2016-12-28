@@ -23,6 +23,8 @@ public class ClassesRecyclerViewAdapter extends RecyclerView.Adapter<ClassesRecy
     public static String DESCRIPTION_EXTRA="course_desc";
     public static String COURSE_EXTRA="course_code";
     public static String IMAGE_EXTRA="course_cover";
+    public static String COURSE_ID="course_id";
+
     ImageView img;
 
     public ClassesRecyclerViewAdapter(Context context, ArrayList<Course> itemList) {
@@ -50,7 +52,7 @@ public class ClassesRecyclerViewAdapter extends RecyclerView.Adapter<ClassesRecy
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick() {
-                openDetailActivity(s.getCourse_code(),s.getCourse_desc(),s.getCourse_cover());
+                openDetailActivity(s.getCourse_code(),s.getCourse_desc(),s.getCourse_cover(),String.valueOf(s.getCourse_crn()));
             }
         });
 
@@ -62,13 +64,13 @@ public class ClassesRecyclerViewAdapter extends RecyclerView.Adapter<ClassesRecy
     }
 
 
-    private void openDetailActivity(String name,String desc,String imageUrl)
+    private void openDetailActivity(String name,String desc,String imageUrl,String id)
     {
         Intent i=new Intent(context, DetailsClassesActivity1.class);
         i.putExtra(COURSE_EXTRA,name);
         i.putExtra(DESCRIPTION_EXTRA,desc);
         i.putExtra(IMAGE_EXTRA,imageUrl);
-
+        i.putExtra(COURSE_ID,id);
         context.startActivity(i);
     }
 }

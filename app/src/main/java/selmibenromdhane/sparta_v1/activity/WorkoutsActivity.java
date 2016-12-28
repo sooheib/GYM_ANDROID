@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,8 +14,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.Data.Database;
-import selmibenromdhane.sparta_v1.Model.Workout;
+import selmibenromdhane.sparta_v1.helper.Database;
+import selmibenromdhane.sparta_v1.manager.Workout;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.WorkoutsAdapter;
 import selmibenromdhane.sparta_v1.adapter.WorkoutsSelectableAdapter;

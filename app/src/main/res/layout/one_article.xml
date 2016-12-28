@@ -11,6 +11,7 @@
 		android:layout_marginLeft="@dimen/inbox_horizontal_margin"
 		android:layout_marginRight="@dimen/inbox_horizontal_margin"
 		android:layout_marginTop="@dimen/inbox_vertical_margin"
+		android:layout_marginBottom="@dimen/inbox_vertical_margin"
 		android:background="@color/colorAccent1" >
 		<ImageView
 			android:id="@+id/messageIcon"
