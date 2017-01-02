@@ -152,7 +152,7 @@ public class BaseActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Exercises Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.perso:
-                        Intent intent3 = new Intent(BaseActivity.this, ProfileActivity.class);
+                        Intent intent3 = new Intent(BaseActivity.this, Profile2Activity.class);
                         startActivity(intent3);
                         finish();
                         Toast.makeText(getApplicationContext(),"Profile Selected", Toast.LENGTH_SHORT).show();
@@ -196,6 +196,12 @@ public class BaseActivity extends AppCompatActivity {
                         logoutUser();
                         return true;
 
+                    case R.id.gallerie:
+                        Intent   intentped = new Intent(BaseActivity.this, GallerieActivity.class);
+                        startActivity(intentped);
+                        Toast.makeText(getApplicationContext(),"Gallerie", Toast.LENGTH_SHORT).show();
+
+                        return true;
                     default:
                         Toast.makeText(getApplicationContext(),"Somethings Wrong", Toast.LENGTH_SHORT).show();
                         return true;

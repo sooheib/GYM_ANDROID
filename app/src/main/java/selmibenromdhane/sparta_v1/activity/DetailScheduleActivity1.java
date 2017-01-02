@@ -69,7 +69,6 @@ import selmibenromdhane.sparta_v1.manager.Schedule;
 import selmibenromdhane.sparta_v1.parser.ScheduleParser;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
 
-import static selmibenromdhane.sparta_v1.R.id.fab;
 
 public class DetailScheduleActivity1 extends AppCompatActivity {
     private static final String KEY_SCHEDULE ="schedule_id" ;

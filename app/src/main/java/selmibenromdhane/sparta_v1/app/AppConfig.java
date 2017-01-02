@@ -24,6 +24,7 @@ public class AppConfig {
 
 	public static String URL_DELETERESERVE = "https://spartaapp.azurewebsites.net/Backend/android_api/deletee.php";
 
+	public static String URL_GetLog="https://spartaapp.azurewebsites.net/Backend/android_api/getLog.php";
 
 	public static String URL_TRAINER = "https://spartaapp.azurewebsites.net/Backend/android_api/getTrainer.php";
 	public static String URL_DELETEBOOkING = "https://spartaapp.azurewebsites.net/Backend/android_api/deleteBooking.php";
@@ -44,6 +45,13 @@ public class AppConfig {
 
 
 	public static String URL_OWNSCHEDULE = "https://spartaapp.azurewebsites.net/Backend/android_api/getClientSchedule.php";
+	public static String URL_UPDATEUSER="http://vps-1000420-773.cp.hosting.topnet.tn/updatePhotoUser.php";
+	public static String URL_GETPROFILE="https://spartaapp.azurewebsites.net/Backend/android_api/getProfile.php";
+
+	public static String URL_CHANGEPASSWORD="https://spartaapp.azurewebsites.net/Backend/android_api/updatePassword.php";
+	public static String  URL_GALLERIE="https://spartaapp.azurewebsites.net/Backend/android_api/getGallerie.php";
+	public static String URL_UPLOAD="https://spartaapp.azurewebsites.net/Backend/android_api/upload.php";
+	public static final String UPLOAD_URL = "http://vps-1000420-773.cp.hosting.topnet.tn/upload2.php";
 
 
 //	final static String URL_CLASSES="http://192.168.1.3/Upload-Insert-Update-Delete" +

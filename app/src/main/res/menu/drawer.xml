@@ -77,6 +77,11 @@
             android:checked="false"
             android:icon="@drawable/settings"
             android:title="@string/navigation_item_7" />
+        <item
+            android:id="@+id/gallerie"
+            android:checked="false"
+            android:icon="@drawable/instagram"
+            android:title="@string/navigation_item_9" />
     </group>
 
     <group

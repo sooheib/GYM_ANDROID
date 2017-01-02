@@ -42,6 +42,8 @@
     <string name="navigation_item_5">Exercises</string>
     <string name="navigation_item_6">My Info</string>
     <string name="navigation_item_7">Settings</string>
+    <string name="navigation_item_9">Gallerie</string>
+
     <string name="navigation_item_8">Sing Out</string>
     <string name="action_share">Share</string>
     <string name="empty_inbox_label">No new messages!</string>
