@@ -110,7 +110,7 @@ public class GallerieActivity extends BaseActivity {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject person = (JSONObject) response.get(i);
 
-                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted")));
+                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted"),person.getString("name")));
                             }
                             rv.setAdapter(new FeedAdapter(getApplicationContext(), list));
 

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
+import selmibenromdhane.sparta_v1.utils.CircleTransform;
 import selmibenromdhane.sparta_v1.utils.Gallery;
 
 
@@ -36,7 +37,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public ImageView photo;
-        public TextView text_name;
+        public TextView user_name;
         public ImageView bt_more;
         public ImageView photo_content;
         public ImageButton bt_like;
@@ -58,12 +59,12 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                 }
             });
             */
-            photo = (ImageView) v.findViewById(R.id.ivUserProfile);
+            photo = (ImageView) v.findViewById(R.id.ivUserProfil);
             bt_more = (ImageView) v.findViewById(R.id.btnMore);
             photo_content = (ImageView) v.findViewById(R.id.ivFeedCenter);
             bt_like = (ImageButton) v.findViewById(R.id.btnLike);
             bt_comment = (ImageButton) v.findViewById(R.id.btnComments);
-            text_name=(TextView)v.findViewById(R.id.text_name);
+            user_name=(TextView)v.findViewById(R.id.text_name);
             desc=(TextView)v.findViewById(R.id.desc);
             nbLike=(TextView)v.findViewById(R.id.nbLike);
             rs=(CardView)v.findViewById(R.id.card_view);
@@ -106,7 +107,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         holder.currentPair = items.get(position);
                 Picasso.with(ctx).load(holder.currentPair.getPhoto()).resize(1080,1080)
                 .into(holder.photo_content);
-
+        Picasso.with(ctx).load(holder.currentPair.getPhotoUser())
+                .transform(new CircleTransform()).into(holder.photo);
+        holder.user_name.setText(holder.currentPair.getUser_name());
         holder.nbLike.setText(holder.currentPair.getNbLike());
         holder.desc.setText(holder.currentPair.getPosted());
        // String p=holder.currentPair;

@@ -10,13 +10,22 @@ public class Gallery {
     private String photo;
     private String photoUser;
     private String posted;
+    private String user_name;
 
+    public String getUser_name() {
+        return user_name;
+    }
 
-    public Gallery(String nbLike, String photo, String photoUser, String posted) {
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public Gallery(String nbLike, String photo, String photoUser, String posted,String user_name) {
         this.nbLike = nbLike;
         this.photo = photo;
         this.photoUser = photoUser;
         this.posted = posted;
+        this.user_name=user_name;
     }
 
     public Gallery() {
