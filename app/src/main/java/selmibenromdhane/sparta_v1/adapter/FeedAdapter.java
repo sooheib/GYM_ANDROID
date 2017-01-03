@@ -3,6 +3,7 @@ package selmibenromdhane.sparta_v1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -81,6 +82,16 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                     Snackbar.make(view, getLocation.getLocation(ctx), Snackbar.LENGTH_SHORT).show();
+                    Uri uri = null;
+
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("image/jpeg");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM,uri);
+                    Intent ni = Intent.createChooser(sharingIntent,"");
+                    ni.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                   ctx.startActivity(ni);
+
                 }
             });
 
