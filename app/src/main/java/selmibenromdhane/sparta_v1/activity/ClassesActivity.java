@@ -1,5 +1,6 @@
 package selmibenromdhane.sparta_v1.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,4 +27,11 @@ public class ClassesActivity extends BaseActivity{
         new ClassesCardDownloader(ClassesActivity.this, AppConfig.URL_CLASSES,rView).execute();
 
     }
+
+    @Override
+    public void onBackPressed() {
+   Intent intent=new Intent(this,HomeActivity.class);
+        startActivity(intent);
+    }
+
 }

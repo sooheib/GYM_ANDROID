@@ -31,12 +31,12 @@ public class MainActivityPedo extends BaseActivityPedo implements DailyReportFra
         // show welcome dialog on first run
         String isNotFirstRun = PreferenceManager.getDefaultSharedPreferences(this).
                 getString(getString(R.string.pref_is_not_first_run), "");
-        if (isNotFirstRun.equals("")) {
-            PreferenceManager.getDefaultSharedPreferences(this).edit().
-                    putString(getString(R.string.pref_is_not_first_run), "true").apply();
-            WelcomeDialog welcomeDialog = new WelcomeDialog();
-            welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
-        }
+//        if (isNotFirstRun.equals("")) {
+//            PreferenceManager.getDefaultSharedPreferences(this).edit().
+//                    putString(getString(R.string.pref_is_not_first_run), "true").apply();
+//            WelcomeDialog welcomeDialog = new WelcomeDialog();
+//            welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
+//        }
 
         // Load first view
         final android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -53,32 +53,10 @@ public class MainActivityPedo extends BaseActivityPedo implements DailyReportFra
 //        return R.id.menu_home;
 //    }
 
-    public static class WelcomeDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            LayoutInflater i = getActivity().getLayoutInflater();
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setView(i.inflate(R.layout.welcome_dialog, null));
-            builder.setIcon(R.mipmap.ic_drawer);
-            builder.setTitle(getActivity().getString(R.string.welcome));
-            builder.setPositiveButton(getActivity().getString(R.string.okay), null);
-            builder.setNegativeButton(getActivity().getString(R.string.view_help), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                 //   Intent intent = new Intent(getActivity(), HelpActivityPedo.class);
-                   // startActivity(intent);
-                }
-            });
-            builder.setNeutralButton(getActivity().getString(R.string.view_personal_settings), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    //Intent intent = new Intent(getActivity(), PreferencesActivity.class);
-                   // intent.putExtra(PreferencesActivity.EXTRA_SHOW_FRAGMENT, PreferencesActivity.GeneralPreferenceFragment.class.getName());
-                  //  intent.putExtra(PreferencesActivity.EXTRA_SHOW_FRAGMENT_TITLE, R.string.action_settings);
-                    //startActivity(intent);
-                }
-            });
 
-            return builder.create();
-        }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(this,HomeActivity.class);
+        startActivity(intent);
     }
 }

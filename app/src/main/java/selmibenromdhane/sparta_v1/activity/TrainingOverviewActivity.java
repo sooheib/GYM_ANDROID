@@ -284,5 +284,10 @@ public class TrainingOverviewActivity extends BaseActivity implements TrainingOv
         WalkingModePersistenceHelper.setActiveMode(walkingMode, this);
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(this,HomeActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -1,5 +1,6 @@
 package selmibenromdhane.sparta_v1.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.ListView;
@@ -9,7 +10,7 @@ import selmibenromdhane.sparta_v1.app.AppConfig;
 import selmibenromdhane.sparta_v1.parser.TrainerDownloader;
 
 
-public class TrainersActivity extends BaseActivity{
+public class TrainersActivity extends BaseActivity {
 
 
     @Override
@@ -29,6 +30,13 @@ public class TrainersActivity extends BaseActivity{
         new TrainerDownloader(TrainersActivity.this, AppConfig.URL_TRAINER,friends).execute();
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(this,HomeActivity.class);
+        startActivity(intent);
     }
 }
 

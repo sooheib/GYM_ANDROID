@@ -1,6 +1,9 @@
 package selmibenromdhane.sparta_v1.fragment;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -32,7 +35,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +57,7 @@ import selmibenromdhane.sparta_v1.manager.Article;
 import selmibenromdhane.sparta_v1.manager.Schedule;
 import selmibenromdhane.sparta_v1.manager.Session;
 import selmibenromdhane.sparta_v1.parser.ScheduleOwnDownloader;
+import selmibenromdhane.sparta_v1.utils.MyBroadCastReceiver;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -122,12 +130,46 @@ public class ScheduleOwnFragment extends Fragment {
                 return false;
             }
         });
+        String dateStr="01-03-2016";
+        String timeStr="21:45";
+        String desc="Event1";
 
+        SetAlarm(dateStr,timeStr,desc);
 
         classListView.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
 
         return rootView;
 }
+
+    public void SetAlarm(String dateStr, String timeStr, String desc) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        String time = "00:00";  // If time is not given
+//        if(timeStr.contains("AM")) {
+//            time = timeStr.substring(0,5);
+//        } else if(timeStr.contains("PM")) {
+//            int hour = Integer.parseInt(timeStr.substring(0,2));
+//            time = (hour+12) + ":" + timeStr.substring(3,5);
+//        }
+        Date date = null;
+        try {
+            date = sdf.parse(dateStr + " " + time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        Intent intent = new Intent(getActivity(), MyBroadCastReceiver.class);
+        intent.putExtra("desc", desc);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(), 1253, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        Toast.makeText(getActivity(), "Alarm Set.", Toast.LENGTH_LONG).show();
+    }
+
 
     private void showDialog() {
         if (!pDialog.isShowing())

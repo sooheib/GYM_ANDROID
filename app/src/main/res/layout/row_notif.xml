@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.balysv.materialripple.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="500dp"
     android:layout_height="wrap_content"
     android:background="@color/colorAccent"
     style="@style/RippleStyleBlack">
 
     <LinearLayout
         android:id="@+id/lyt_parent"
-        android:layout_width="match_parent"
+        android:layout_width="374dp"
         android:background="@color/colorAccent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:clickable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -22,13 +22,13 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:src="@drawable/unknown_avatar" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
@@ -36,22 +36,23 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
                     android:text="Sample"
+                    android:textSize="20dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/material_grey_800"
                     android:textStyle="normal" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xsmall"
                 android:gravity="center_vertical"
@@ -65,10 +66,11 @@
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="match_parent"
+                    android:textSize="20dp"
                     android:layout_height="wrap_content"
                     android:text="08:50"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/colorPrimaryLight"
+                    android:textColor="@color/bg_register"
                     android:textStyle="normal" />
             </LinearLayout>
 

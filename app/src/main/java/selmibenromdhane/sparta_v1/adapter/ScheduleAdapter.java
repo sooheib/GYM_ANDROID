@@ -70,21 +70,16 @@ public class ScheduleAdapter extends BaseActivity implements ListAdapter {
         {
             convertView=inflater.inflate(R.layout.one_article,parent,false);
         }
-
-
-
-
-
         // txt.setTypeface(font);
-        Typeface myTypeface=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Medium.ttf");
+        Typeface myTypeface=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Bold.ttf");
         TextView coursetxt= (TextView) convertView.findViewById(R.id.courseSchedule);
         coursetxt.setTypeface(myTypeface);
-        Typeface myTypeface1=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
+        Typeface myTypeface1=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Bold.ttf");
 
         TextView trainersetxt= (TextView) convertView.findViewById(R.id.trainerSchedule);
         trainersetxt.setTypeface(myTypeface1);
         TextView hourtext= (TextView) convertView.findViewById(R.id.hourSchedule);
-        Typeface myTypeface2=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
+        Typeface myTypeface2=Typeface.createFromAsset(getAssets(),"fonts/Roboto-Bold.ttf");
 
         hourtext.setTypeface(myTypeface2);
 

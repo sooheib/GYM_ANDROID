@@ -56,12 +56,10 @@ public class ScheduleClassListAdapter  extends RecyclerView.Adapter<ScheduleClas
         SimpleDateFormat sdftoday = new SimpleDateFormat("EEE");
 
 
-
         String date=session.getStartDate();
         String hour=session.getStartTime();
         //String day=sdftoday.format(date);
-         String dateString=date+" "+hour;
-
+         String dateString=date+" at "+hour;
 
         holder.content.setText(session.getCourse());
         holder.date.setText(dateString);

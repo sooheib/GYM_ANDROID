@@ -2,6 +2,7 @@ package selmibenromdhane.sparta_v1.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -136,21 +137,20 @@ public class EventsActivity extends BaseActivity1 {
         });
 
     }
-//    @Override
-//    public void onBackPressed() {
-//        if (unfoldableView != null
-//                && (unfoldableView.isUnfolded() || unfoldableView.isUnfolding())) {
-//            unfoldableView.foldBack();
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
+        if (unfoldableView != null
+                && (unfoldableView.isUnfolded() || unfoldableView.isUnfolding())) {
+            unfoldableView.foldBack();
+        }
+        else {
+            Intent intent=new Intent(this,HomeActivity.class);
+            startActivity(intent);
+        }
     }
+
+
 
     public void openDetails(View coverView, final Event painting) {
         final ImageView image = Views.find(detailsLayout, R.id.details_image);
@@ -174,14 +174,6 @@ public class EventsActivity extends BaseActivity1 {
 //        SimpleDateFormat day = new SimpleDateFormat("EEEE");
 //
 //        String daystart=day.format(painting.setEvent_startDate());
-
-
-
-
-
-
-
-
 
         GridClient.loadPaintingImage(image, painting);
         title.setText(painting.getEvent_name());

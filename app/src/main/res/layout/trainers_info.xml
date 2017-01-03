@@ -18,49 +18,27 @@
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
-            android:text=""
+            android:text="PILATES"
             android:id="@+id/interest_1"
             />
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
-            android:text=""
+            android:text="CARDIO"
 
             android:id="@+id/interest_2" />
 
         <selmibenromdhane.sparta_v1.views.FontTextView
             style="@style/TextView.Interest"
-            android:text=""
+            android:text="TAEBO"
             android:clickable="true"
 
             android:id="@+id/interest_3" />
-
         <selmibenromdhane.sparta_v1.views.FontTextView
-            android:id="@+id/interest_4"
-            style="@style/TextView.Interest"
-            android:clickable="true"
-
-            android:text=""
-            />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/interestsPrimary"
-        android:id="@+id/interestsSecondary"
-        android:layout_marginTop="5dp"
-
-        style="@style/LinearLayout.Interests">
-
-        <selmibenromdhane.sparta_v1.views.FontTextView
-            android:id="@+id/interest_5"
-            android:clickable="true"
-
-            android:text=""
-            style="@style/TextView.Interest" />
-
-
+        style="@style/TextView.Interest"
+        android:text=""
+        android:clickable="true"
+        android:id="@+id/interest_4" />
 
 
 
@@ -70,7 +48,7 @@
         android:layout_width="wrap_content"
 
         android:background="@drawable/calendar"
-
+        android:onClick="cal"
         android:id="@+id/imageButton"
         android:layout_marginRight="28dp"
         android:layout_marginEnd="28dp"
