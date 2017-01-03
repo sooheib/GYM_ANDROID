@@ -2,6 +2,7 @@ package selmibenromdhane.sparta_v1.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selmibenromdhane.sparta_v1.R;
+import selmibenromdhane.sparta_v1.activity.DetailsGallerieActivity;
+import selmibenromdhane.sparta_v1.activity.GallerieActivity;
+import selmibenromdhane.sparta_v1.activity.GridViewActivity;
+import selmibenromdhane.sparta_v1.services.GPSService;
+import selmibenromdhane.sparta_v1.services.getLocation;
 import selmibenromdhane.sparta_v1.utils.CircleTransform;
 import selmibenromdhane.sparta_v1.utils.Gallery;
 
@@ -45,6 +51,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         public TextView nbLike;
         public TextView desc;
         public CardView rs;
+        public TextView localisation;
 
         public Gallery currentPair;
         public ViewHolder(View v) {
@@ -68,11 +75,12 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             desc=(TextView)v.findViewById(R.id.desc);
             nbLike=(TextView)v.findViewById(R.id.nbLike);
             rs=(CardView)v.findViewById(R.id.card_view);
+            localisation=(TextView)v.findViewById(R.id.adresse);
 
             bt_comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Share comment", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, getLocation.getLocation(ctx), Snackbar.LENGTH_SHORT).show();
                 }
             });
 
@@ -103,12 +111,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, int position) {
       //  YoYo.with(Techniques.FadeIn).playOn(holder.rs);
         YoYo.with(Techniques.FadeInUp).duration(2000).playOn(holder.rs);
-
+       holder.localisation.setText("ddd");
         holder.currentPair = items.get(position);
-                Picasso.with(ctx).load(holder.currentPair.getPhoto()).resize(1080,1080)
-                .into(holder.photo_content);
-        Picasso.with(ctx).load(holder.currentPair.getPhotoUser())
-                .transform(new CircleTransform()).into(holder.photo);
+        Picasso.with(ctx).load(holder.currentPair.getPhoto()).into(holder.photo_content);
+        Picasso.with(ctx).load(holder.currentPair.getPhotoUser()).transform(new CircleTransform()).into(holder.photo);
         holder.user_name.setText(holder.currentPair.getUser_name());
         holder.nbLike.setText(holder.currentPair.getNbLike());
         holder.desc.setText(holder.currentPair.getPosted());
@@ -118,6 +124,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "photo", Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent(ctx, GridViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ctx.startActivity(intent);
 
             }
         });

@@ -3,6 +3,7 @@ package selmibenromdhane.sparta_v1.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,15 +13,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -48,9 +52,12 @@ import java.util.UUID;
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.FeedAdapter;
 import selmibenromdhane.sparta_v1.app.AppConfig;
+import selmibenromdhane.sparta_v1.services.GPSService;
 import selmibenromdhane.sparta_v1.utils.Gallery;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
 import selmibenromdhane.sparta_v1.utils.Utils;
+
+import static selmibenromdhane.sparta_v1.R.id.recyclerView;
 
 
 public class GallerieActivity extends BaseActivity {
@@ -59,6 +66,7 @@ public class GallerieActivity extends BaseActivity {
     ArrayList<Gallery> list = new ArrayList<>();
     Context ctx;
     private String userChoosenTask;
+    Uri imageUri;
 
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
@@ -73,14 +81,18 @@ public class GallerieActivity extends BaseActivity {
 
     //Uri to store the image uri
     private Uri filePath;
-
+private SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallerie);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
         btn = (FloatingActionButton) findViewById(R.id.btnCreate);
         rv = (RecyclerView) findViewById(R.id.s);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+
         getGallerie(ctx);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +104,20 @@ public class GallerieActivity extends BaseActivity {
 
             }
         });
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
 
-
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getGallerie(ctx);
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2500);
+            }
+        });
     }
 
 
@@ -110,7 +134,10 @@ public class GallerieActivity extends BaseActivity {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject person = (JSONObject) response.get(i);
 
-                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted"),person.getString("name")));
+                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted"),person.getString("name"),person.getString("adresse")));
+
+                                Toast.makeText(getApplicationContext(), person.getString("posted"), Toast.LENGTH_SHORT).show();
+
                             }
                             rv.setAdapter(new FeedAdapter(getApplicationContext(), list));
 
@@ -123,6 +150,7 @@ public class GallerieActivity extends BaseActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "erreur", Toast.LENGTH_SHORT).show();
+
             }
         }) {
             @Override
@@ -147,6 +175,7 @@ public class GallerieActivity extends BaseActivity {
 
         //getting the actual path of the image
         String path = getPath(filePath);
+        System.out.println("ddddddddd"+GPSService.getLocation(getApplicationContext()));
 
         //Uploading code
         try {
@@ -155,7 +184,9 @@ public class GallerieActivity extends BaseActivity {
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, AppConfig.UPLOAD_URL)
                     .addFileToUpload(path, "fileToUpload") //Adding file
-                    .addParameter("name", name) //Adding text parameter to the request
+                    .addParameter("localisation", GPSService.getLocation(getApplicationContext())) //Adding text parameter to the request
+                    .addParameter("idUser",LoginActivity.userId) //Adding text parameter to the request
+
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
@@ -263,7 +294,16 @@ public class GallerieActivity extends BaseActivity {
     }
 
     private void cameraIntent() {
+       // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+       // startActivityForResult(intent, REQUEST_CAMERA);
+
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
@@ -283,7 +323,7 @@ public class GallerieActivity extends BaseActivity {
     }
 
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+     /*   Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         filePath = data.getData();
         Uri tempUri = getImageUri(getApplicationContext(), thumbnail);
         filePath = tempUri;
@@ -304,6 +344,18 @@ public class GallerieActivity extends BaseActivity {
             e.printStackTrace();
         }
         uploadMultipart();
+
+*/ try {
+         Bitmap   thumbnail = MediaStore.Images.Media.getBitmap(
+                    getContentResolver(), imageUri);
+filePath=imageUri;
+            uploadMultipart();
+           // imgView.setImageBitmap(thumbnail);
+            String imageurl = getRealPathFromURI(imageUri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -333,10 +385,17 @@ public class GallerieActivity extends BaseActivity {
     }
 
     public String getRealPathFromURI(Uri uri) {
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+       /* Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
+        */
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, proj, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
 
     }
 

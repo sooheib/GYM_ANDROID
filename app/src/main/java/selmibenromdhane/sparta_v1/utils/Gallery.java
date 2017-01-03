@@ -11,6 +11,36 @@ public class Gallery {
     private String photoUser;
     private String posted;
     private String user_name;
+    private String localisation;
+    private String title;
+
+    public Gallery(String nbLike, String photo, String photoUser, String posted, String user_name, String localisation, String title) {
+        this.nbLike = nbLike;
+        this.photo = photo;
+        this.photoUser = photoUser;
+        this.posted = posted;
+        this.user_name = user_name;
+        this.localisation = localisation;
+        this.title = title;
+    }
+
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public Gallery(String nbLike, String photo, String photoUser, String posted, String user_name, String localisation) {
+
+        this.nbLike = nbLike;
+        this.photo = photo;
+        this.photoUser = photoUser;
+        this.posted = posted;
+        this.user_name = user_name;
+        this.localisation = localisation;
+    }
 
     public String getUser_name() {
         return user_name;

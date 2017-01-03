@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <supports-screens
@@ -188,6 +188,8 @@
                 android:value=".activity.WalkingModesActivity" />
         </activity>
         <activity android:name=".activity.GallerieActivity"></activity>
+        <activity android:name=".activity.GridViewActivity"></activity>
+        <activity android:name=".activity.DetailsGallerieActivity"></activity>
 
 
 
@@ -226,6 +228,7 @@
         <service
             android:name=".services.HardwareStepCounterService"
             android:stopWithTask="false" />
+
     </application>
 
 </manifest>

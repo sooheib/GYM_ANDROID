@@ -32,17 +32,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ddd"
+                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
+                android:paddingTop="13dp"
                 android:id="@+id/text_name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom|left"
+                android:textStyle="italic"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="3dp"
+                android:textSize="7dp"
+                android:id="@+id/adresse" />
+
         </LinearLayout>
 
 
         <ImageView
                 android:id="@+id/ivFeedCenter"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
+            android:maxHeight="250dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
                 android:src="@drawable/img_feed_center_1"/>
 
 
