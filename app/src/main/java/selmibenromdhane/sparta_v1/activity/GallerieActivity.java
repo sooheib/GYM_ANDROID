@@ -3,17 +3,16 @@ package selmibenromdhane.sparta_v1.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,8 +22,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -48,16 +47,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Handler;
 
 import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.adapter.FeedAdapter;
 import selmibenromdhane.sparta_v1.app.AppConfig;
-import selmibenromdhane.sparta_v1.services.GPSService;
 import selmibenromdhane.sparta_v1.utils.Gallery;
 import selmibenromdhane.sparta_v1.utils.MySingleton;
 import selmibenromdhane.sparta_v1.utils.Utils;
-
-import static selmibenromdhane.sparta_v1.R.id.recyclerView;
 
 
 public class GallerieActivity extends BaseActivity {
@@ -66,9 +63,13 @@ public class GallerieActivity extends BaseActivity {
     ArrayList<Gallery> list = new ArrayList<>();
     Context ctx;
     private String userChoosenTask;
-    Uri imageUri;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    public static final int CAPTURE_IMAGE_THUMBNAIL_ACTIVITY_REQUEST_CODE = 1888;
+    public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1777;
+
 
     //Image request code
     private int PICK_IMAGE_REQUEST = 1;
@@ -81,18 +82,18 @@ public class GallerieActivity extends BaseActivity {
 
     //Uri to store the image uri
     private Uri filePath;
-private SwipeRefreshLayout mSwipeRefreshLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallerie);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
         btn = (FloatingActionButton) findViewById(R.id.btnCreate);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+
         rv = (RecyclerView) findViewById(R.id.s);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-
-
         getGallerie(ctx);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,12 +105,12 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
 
             }
         });
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
 
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getGallerie(ctx);
@@ -118,7 +119,11 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
                 }, 2500);
             }
         });
+
     }
+
+
+
 
 
     public void getGallerie(final Context ctx) {
@@ -133,10 +138,8 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
 
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject person = (JSONObject) response.get(i);
+                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted"),person.getString("name")));
 
-                                list.add(new Gallery(person.getString("nbLike"), person.getString("photos"), person.getString("photoprofile"), person.getString("posted"),person.getString("name"),person.getString("adresse")));
-
-                                Toast.makeText(getApplicationContext(), person.getString("posted"), Toast.LENGTH_SHORT).show();
 
                             }
                             rv.setAdapter(new FeedAdapter(getApplicationContext(), list));
@@ -150,7 +153,6 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "erreur", Toast.LENGTH_SHORT).show();
-
             }
         }) {
             @Override
@@ -175,7 +177,6 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
 
         //getting the actual path of the image
         String path = getPath(filePath);
-        System.out.println("ddddddddd"+GPSService.getLocation(getApplicationContext()));
 
         //Uploading code
         try {
@@ -184,9 +185,7 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, AppConfig.UPLOAD_URL)
                     .addFileToUpload(path, "fileToUpload") //Adding file
-                    .addParameter("localisation", GPSService.getLocation(getApplicationContext())) //Adding text parameter to the request
-                    .addParameter("idUser",LoginActivity.userId) //Adding text parameter to the request
-
+                    .addParameter("idUser", LoginActivity.userId) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
@@ -271,7 +270,8 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
                     if (result)
-                        cameraIntent();
+                        start();
+                        // cameraIntent();
 
                 } else if (items[item].equals("Choose from Library")) {
                     userChoosenTask = "Choose from Library";
@@ -294,20 +294,11 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
     }
 
     private void cameraIntent() {
-       // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-       // startActivityForResult(intent, REQUEST_CAMERA);
-
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-        imageUri = getContentResolver().insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -323,7 +314,7 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
     }
 
     private void onCaptureImageResult(Intent data) {
-     /*   Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         filePath = data.getData();
         Uri tempUri = getImageUri(getApplicationContext(), thumbnail);
         filePath = tempUri;
@@ -345,20 +336,8 @@ private SwipeRefreshLayout mSwipeRefreshLayout;
         }
         uploadMultipart();
 
-*/ try {
-         Bitmap   thumbnail = MediaStore.Images.Media.getBitmap(
-                    getContentResolver(), imageUri);
-filePath=imageUri;
-            uploadMultipart();
-           // imgView.setImageBitmap(thumbnail);
-            String imageurl = getRealPathFromURI(imageUri);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
     }
-
+*/
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
@@ -385,18 +364,71 @@ filePath=imageUri;
     }
 
     public String getRealPathFromURI(Uri uri) {
-       /* Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
-        */
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, proj, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
 
     }
+    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight)
+    { // BEST QUALITY MATCH
+
+        //First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+
+        // Calculate inSampleSize, Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        int inSampleSize = 1;
+
+        if (height > reqHeight)
+        {
+            inSampleSize = Math.round((float)height / (float)reqHeight);
+        }
+        int expectedWidth = width / inSampleSize;
+
+        if (expectedWidth > reqWidth)
+        {
+            //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
+            inSampleSize = Math.round((float)width / (float)reqWidth);
+        }
+
+        options.inSampleSize = inSampleSize;
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeFile(path, options);
+    }
+
+public void start()
+{
+    Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+    File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+    startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
+}
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        //Check that request code matches ours:
+        if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE)
+        {
+            //Get our saved file into a bitmap object:
+            File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+            Bitmap bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 1000, 700);
+           filePath=getImageUri(getApplicationContext(),bitmap);
+            uploadMultipart();
+
+
+        }
+    }
+
+
+
+
 
 }
