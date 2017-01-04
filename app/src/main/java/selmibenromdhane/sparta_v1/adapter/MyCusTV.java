@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 public class MyCusTV extends TextView {
 
-
     public MyCusTV(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Regular.ttf"));
+        this.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Bold.ttf"));
     }
 }

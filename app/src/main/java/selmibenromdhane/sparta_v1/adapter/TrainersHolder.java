@@ -19,7 +19,9 @@ class TrainersHolder  implements  View.OnClickListener{
     ImageView leftAvatar;
     ImageView rightAvatar;
     View infoPage;
+    ImageView cal;
     ItemClickListener itemClickListener;
+    View.OnClickListener onClickListener;
 
 
     List<TextView> interests = new ArrayList<>();
@@ -27,9 +29,14 @@ class TrainersHolder  implements  View.OnClickListener{
 
 
     public TrainersHolder() {
+        View.OnClickListener onClickListener;
         ItemClickListener itemClickListener;
     }
 
+    public void onClickListener(View.OnClickListener onClickListener){
+        this.onClickListener=onClickListener;
+
+    }
     public void setItemClickListener(ItemClickListener itemClickListener)
     {
         this.itemClickListener=itemClickListener;

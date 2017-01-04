@@ -278,6 +278,8 @@ ScheduleParser scheduleParser=new ScheduleParser();
         return view;
     }
 
+
+
     public void addBooking(final String userID,final String scheduleID ,String urlbooking)
     {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlbooking,
@@ -483,7 +485,6 @@ ScheduleParser scheduleParser=new ScheduleParser();
         MySingleton.getinstance(getContext()).addToRequest(stringRequest);
 
     }
-
 
 
 

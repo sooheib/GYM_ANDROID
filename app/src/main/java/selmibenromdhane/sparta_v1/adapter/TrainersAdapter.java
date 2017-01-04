@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +42,11 @@ import static android.R.attr.id;
  * Created by sooheib on 11/28/16.
  */
 
-public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements AdapterView.OnItemClickListener {
+public class TrainersAdapter extends BaseFlipAdapter<Trainer> {
 
     private final int PAGES = 3;
-    private int[] IDS_INTEREST = {R.id.interest_1, R.id.interest_2, R.id.interest_3, R.id.interest_4, R.id.interest_5};
+    private int[] IDS_INTEREST={R.id.interest_1, R.id.interest_2, R.id.interest_3,R.id.interest_4}
+            ;
     Context context;
     private RequestQueue requestQueue;
 
@@ -81,6 +83,7 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
             holder = new TrainersHolder();
             LayoutInflater mInflater = (LayoutInflater) context.getSystemService(TrainersActivity.LAYOUT_INFLATER_SERVICE);
 
+
             //  convertView = mInflater.inflate(R.layout.trainer_merge_page,null);
            // convertView.setOnClickListener(null);
           //  convertView.setEnabled(false);
@@ -91,12 +94,6 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
 
             holder.infoPage = mInflater.inflate(R.layout.trainers_info, parent, false);
 
-            holder.infoPage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("aaa");
-                }
-            });
 
 
             holder.nickName = (TextView) holder.infoPage.findViewById(R.id.nickname);
@@ -111,7 +108,7 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
             //  holder.interests= (List<TextView>) holder.infoPage.findViewById(R.id.interest_1);
 
             for (int id : IDS_INTEREST)
-                holder.interests.add((TextView) holder.infoPage.findViewById(id));
+              holder.interests.add((TextView) holder.infoPage.findViewById(id));
 
             convertView.setTag(holder);
         } else {
@@ -120,24 +117,12 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
 
         //  System.out.println("first"+trainer_idfirst);
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick() {
-                System.out.println("aaaa");
-            }
-        });
-
         switch (position) {
             // Merged page with 2 friends
             case 1:
                 //  Bitmap photoTrainer1 = urltoBitmap1.getBitmapFromURL(item1.getPhoto());
 
-
-                if (!exist(trainerlist, trainer_idfirst) && !exist(trainerlist, trainer_idsecond)) {
-
-                }
-
-                Picasso.with(context).load(item1.getPhoto()).into(holder.leftAvatar);
+                Picasso.with(context).load(item1.getPhoto()).resize(500,500).into(holder.leftAvatar);
 
                 //  System.out.println("waw1");
 
@@ -146,7 +131,9 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
 
                     // holder.leftAvatar.setImageDrawable(getResources().getDrawable(R.drawable.anastasia));
 
-                    Picasso.with(context).load(item2.getPhoto()).into(holder.rightAvatar);
+                    Picasso.with(context).load(item2.getPhoto()).resize(500,500).into(holder.rightAvatar);
+
+
 
                     //GridClient.loadPaintingImage(holder.rightAvatar, trainer);
 
@@ -165,7 +152,10 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
                     }
                 });
                 holder.infoPage.setTag(holder);
+
+
                 return holder.infoPage;
+
 
         }
 
@@ -179,6 +169,7 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
                 return true;
             }
         }
+
 
         trainerlist.add(trainer);
         return false;
@@ -198,7 +189,7 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
         while (iViews.hasNext() && iInterests.hasNext())
             iViews.next().setText(iInterests.next());
         //holder.infoPage.setBackgroundColor(0x00CCFF33);
-        holder.nickName.setText(friend.getLast_name());
+        holder.nickName.setText(friend.getFirst_name()+" "+friend.getLast_name());
         // holder.interests.get(0).setText("ssssss");
         // for (int id : IDS_INTEREST)
 
@@ -334,9 +325,5 @@ public class TrainersAdapter extends BaseFlipAdapter<Trainer> implements Adapter
     }
 
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      //  System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
 
-    }
 }

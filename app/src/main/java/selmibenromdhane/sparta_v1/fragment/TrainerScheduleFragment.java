@@ -30,7 +30,7 @@ public class TrainerScheduleFragment extends Fragment {
         lLayout = new LinearLayoutManager(getActivity());
 
 
-        View rootView = inflater.inflate(R.layout.page_fragment_notif, container, false);
+        View rootView = inflater.inflate(R.layout.class_fragment_schedule, container, false);
 
         setHasOptionsMenu(true);
 
