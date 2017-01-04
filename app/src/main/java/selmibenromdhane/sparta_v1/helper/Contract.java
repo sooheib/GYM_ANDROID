@@ -7,8 +7,7 @@ import android.provider.BaseColumns;
 
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.enumeration.EnumEquipment;
-import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+
 import selmibenromdhane.sparta_v1.manager.Exercise;
 
 public class Contract {
@@ -105,7 +104,7 @@ public class Contract {
 
     public static void createExercises(Context context, SQLiteDatabase db) {
         ArrayList<Exercise> initExercises = new ArrayList<>();
-
+/*
         //CHEST
         initExercises.add(new Exercise("Barbell Bench Press1", "barbell_bench2", "barbell_bench_press3"
                 , EnumMuscleGroups.CHEST, "3-5", 1, EnumEquipment.BARBELL));
@@ -235,5 +234,8 @@ public class Contract {
 
             db.insert(Contract.Exercises.TABLE_NAME, "null", contentValues);
         }
+    }
+}
+*/
     }
 }

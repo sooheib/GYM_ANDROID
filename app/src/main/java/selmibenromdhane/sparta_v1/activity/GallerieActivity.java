@@ -30,6 +30,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.facebook.FacebookSdk;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -87,6 +88,8 @@ public class GallerieActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallerie);
         btn = (FloatingActionButton) findViewById(R.id.btnCreate);
@@ -142,7 +145,7 @@ public class GallerieActivity extends BaseActivity {
 
 
                             }
-                            rv.setAdapter(new FeedAdapter(getApplicationContext(), list));
+                            rv.setAdapter(new FeedAdapter(GallerieActivity.this, list));
 
 
                         } catch (JSONException e) {

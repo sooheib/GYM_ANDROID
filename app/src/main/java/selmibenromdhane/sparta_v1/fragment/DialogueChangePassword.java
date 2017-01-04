@@ -50,21 +50,25 @@ public class DialogueChangePassword extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 editConfirmPassword=(EditText)v.findViewById(R.id.confirmPassword);
                 editPassword=(EditText)v.findViewById(R.id.changePassword);
-                if(editPassword.length()==0 && editConfirmPassword.length()==5)
+                if(editPassword.length()==0 && editConfirmPassword.length()==0)
                 {
 
                     new SweetAlertDialog(getContext())
                             .setContentText("Veuiller remplir les champs ")
                             .show();
-                }else if(editConfirmPassword.toString().equals(editPassword.toString())){
+                }else if((editConfirmPassword.toString().equals(editPassword.toString()))){
+
+                    changePassword(LoginActivity.userId,editPassword.getText().toString());
                     new SweetAlertDialog(getContext())
-                            .setContentText("mtps"+editPassword.getText()+"conf"+editConfirmPassword.getText())
+                            .setContentText("vous avez modifier votre profile")
                             .show();
-            }
+                }
                 else {new SweetAlertDialog(getContext())
                         .setContentText(editConfirmPassword.getText().toString())
                         .show();
-                        changePassword(LoginActivity.userId,editPassword.getText().toString());
+                    new SweetAlertDialog(getContext())
+                            .setContentText("veuillez retapez le mot de passe")
+                            .show();
                 }
 
             }
@@ -91,7 +95,7 @@ public class DialogueChangePassword extends DialogFragment {
                        if (response.equals("succeyys"))
                        {
                            System.out.println("d");
-                           Toast.makeText(getContext(),"dd",Toast.LENGTH_LONG).show();
+                       //    Toast.makeText(getContext(),"dd",Toast.LENGTH_LONG).show();
 
                        }
                         else                            System.out.println("failed");

@@ -1,4 +1,4 @@
-package selmibenromdhane.sparta_v1.enumeration;
+package selmibenromdhane.sparta_v1.Enumeration;
 
 public enum EnumEquipment {
     BARBELL(1),

@@ -135,14 +135,6 @@
                         android:gravity="center"
                         android:text="+" />
 
-                    <Button
-                        android:id="@+id/bSubstractWeight"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="-" />
-
                 </TableRow>
 
                 <TableRow
@@ -160,7 +152,7 @@
                         <EditText
                             android:id="@+id/input_height"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:hint="Height"
                             android:inputType="number"
@@ -184,20 +176,10 @@
                         android:gravity="center"
                         android:text="+" />
 
-                    <Button
-                        android:id="@+id/bSubstractHeight"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="-" />
-
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="7">
+
+
 
 
                     <android.support.design.widget.TextInputLayout
@@ -209,7 +191,7 @@
                         <EditText
                             android:id="@+id/input_bmi"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:editable="false"
                             android:focusable="false"
@@ -220,64 +202,21 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
+
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="7">
+                    android:shadowColor="@color/white"
+                    android:backgroundTint="@color/ToolbarColor"
 
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:padding="12dp"
+                    android:text="Change Password"/>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/input_layout_fat"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:id="@+id/input_fat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:hint="Fat"
-                            android:inputType="numberDecimal"
-                            android:singleLine="true"
-                            android:text="20" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center|start"
-                        android:text="%" />
-
-                    <Button
-                        android:id="@+id/bAddFat"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="+" />
-
-                    <Button
-                        android:id="@+id/bSubstractFat"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="-" />
-
-
-
-                </TableRow>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/changePassword"
-                    />
 
             </LinearLayout>
 

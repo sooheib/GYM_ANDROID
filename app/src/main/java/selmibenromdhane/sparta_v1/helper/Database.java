@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
 import selmibenromdhane.sparta_v1.manager.Exercise;
 import selmibenromdhane.sparta_v1.manager.Routine;
 import selmibenromdhane.sparta_v1.manager.Workout;

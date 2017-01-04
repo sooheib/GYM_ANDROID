@@ -5,8 +5,8 @@ import android.database.Cursor;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import selmibenromdhane.sparta_v1.enumeration.EnumEquipment;
-import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.Enumeration.EnumEquipment;
+import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
 
 
 public class Exercise implements Serializable {

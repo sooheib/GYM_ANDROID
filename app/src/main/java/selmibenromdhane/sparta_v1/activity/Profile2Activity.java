@@ -119,6 +119,8 @@ public class Profile2Activity extends BaseActivity {
 
 
         setContentView(R.layout.profile2);
+        Toast.makeText(getApplicationContext(), LoginActivity.userId, Toast.LENGTH_SHORT).show();
+
         getProfile();
 /*get
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -177,8 +179,9 @@ selectImage();
     private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new FloatingLabelsFragment(), "Personal information");
-        adapter.addFrag(new FABLayoutFragment(), "FAB");
-        adapter.addFrag(new SnackBarFragment(), "Snackbar");
+        adapter.addFrag(new CoordinatorFragment(), "");
+        adapter.addFrag(new CoordinatorFragment(), "");
+
         adapter.addFrag(new CoordinatorFragment(), "journal");
         viewPager.setAdapter(adapter);
     }
@@ -492,6 +495,7 @@ selectImage();
                         try {
 
                             JSONObject person = (JSONObject) response.get(0);
+                            Toast.makeText(getApplicationContext(), person.getString("couverture")+LoginActivity.userId, Toast.LENGTH_SHORT).show();
 
                             Picasso.with(getApplicationContext()).load(person.getString("couverture"))
                                     .into(photoCouverture);
@@ -500,6 +504,7 @@ selectImage();
                          //  Picasso.with(getApplicationContext()).load(person.getString("photo"))
                            //         .into(photoProfile);
 
+                            Toast.makeText(getApplicationContext(), "DDDDDDD", Toast.LENGTH_SHORT).show();
 
 
 

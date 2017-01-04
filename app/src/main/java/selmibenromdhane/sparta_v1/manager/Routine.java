@@ -6,9 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import selmibenromdhane.sparta_v1.enumeration.EnumExerciseTypes;
-import selmibenromdhane.sparta_v1.enumeration.EnumMuscleGroups;
-import selmibenromdhane.sparta_v1.enumeration.EnumWeekDays;
+import selmibenromdhane.sparta_v1.Enumeration.EnumExerciseTypes;
+import selmibenromdhane.sparta_v1.Enumeration.EnumMuscleGroups;
+import selmibenromdhane.sparta_v1.Enumeration.EnumWeekDays;
+
 
 public class Routine implements Serializable {
 

@@ -1,6 +1,7 @@
 package selmibenromdhane.sparta_v1.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ import selmibenromdhane.sparta_v1.R;
 import selmibenromdhane.sparta_v1.activity.DetailsGallerieActivity;
 import selmibenromdhane.sparta_v1.activity.GallerieActivity;
 import selmibenromdhane.sparta_v1.activity.GridViewActivity;
+import selmibenromdhane.sparta_v1.app.AppController;
 import selmibenromdhane.sparta_v1.services.GPSService;
 import selmibenromdhane.sparta_v1.services.getLocation;
 import selmibenromdhane.sparta_v1.utils.CircleTransform;
@@ -49,6 +53,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         public ImageView photo_content;
         public ImageButton bt_like;
         public ImageButton bt_comment;
+
         public TextView nbLike;
         public TextView desc;
         public CardView rs;
@@ -78,22 +83,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             rs=(CardView)v.findViewById(R.id.card_view);
             localisation=(TextView)v.findViewById(R.id.adresse);
 
-            bt_comment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Snackbar.make(view, getLocation.getLocation(ctx), Snackbar.LENGTH_SHORT).show();
-                    Uri uri = null;
-
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("image/jpeg");
-                    sharingIntent.putExtra(Intent.EXTRA_STREAM,uri);
-                    Intent ni = Intent.createChooser(sharingIntent,"");
-                    ni.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                   ctx.startActivity(ni);
-
-                }
-            });
 
 
         }
@@ -129,6 +118,21 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         holder.user_name.setText(holder.currentPair.getUser_name());
         holder.nbLike.setText(holder.currentPair.getNbLike());
         holder.desc.setText(holder.currentPair.getPosted());
+        final ShareDialog shareDialog = new ShareDialog((Activity) ctx);
+
+        holder.bt_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(holder.currentPair.getPhoto());
+                if (ShareDialog.canShow(ShareLinkContent.class))
+                {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder().setContentTitle("D")
+                            .setImageUrl(Uri.parse(holder.currentPair.getPhoto())).setContentDescription("Find your favorite Cinema p.getNom( in the best mobile application : googleplay.cinema")
+                            .setContentUrl(Uri.parse("https://www.google.fr/")).build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
        // String p=holder.currentPair;
        // Picasso.with(ctx).load(R.drawable.img_feed_center_1).resize(80, 80).into(holder.photo);
         holder.photo.setOnClickListener(new View.OnClickListener() {
